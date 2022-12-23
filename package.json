@@ -26,9 +26,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:dev:server": "node json-server/index.js",
+    "server": "json-server-auth -w json-server/db.json -p 8000",
     "build": "react-scripts build",
-    "start:dev": "concurrently \"npm start\" \"npm run start:dev:server\"",
+    "start:dev": "concurrently \"npm start\" \"npm run server\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -51,6 +51,6 @@
     ]
   },
   "devDependencies": {
-    "json-server": "^0.17.1"
+    "json-server-auth": "^2.1.0"
   }
 }
