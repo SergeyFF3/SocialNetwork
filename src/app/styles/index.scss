@@ -1,0 +1,24 @@
+@import "./global/global";
+@import 'themes/light';
+@import 'themes/dark';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input,
+button,
+textarea,
+select {
+  margin: 0;
+  font: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  font: var(--font-m);
+  color: var(--primary-color);
+  background: var(--bg-color);
+}

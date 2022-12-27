@@ -1,0 +1,31 @@
+.NavbarWrapper {
+  height: var(--navbar-height);
+  background: var(--secondary-bg-color);
+  padding: 5px 10px;
+
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1300px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.logo {
+  font: var(--font-l);
+}
+
+.switcher {
+  display: flex;
+}
+
+.link {
+  padding: 5px 20px;
+}
+
+.btn {
+  margin-left: 20px;
+}

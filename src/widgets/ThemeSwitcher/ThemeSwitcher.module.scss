@@ -1,0 +1,43 @@
+.ThemeSwitcher {
+  height: 25px;
+  width: 50px;
+  background: rgb(175, 175, 175);
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2px;
+  cursor: pointer;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.span {
+  color: orange;
+}
+
+.btn {
+  position: absolute;
+  z-index: 2;
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  border: none;
+  top: 1.5px;
+  cursor: pointer;
+  background: white;
+  transition: .2s;
+
+  &:hover {
+    box-shadow: 0 0 2px 3px mediumpurple;
+  }
+}
+
+.light {
+  right: 2px;
+}
+
+.dark {
+  left: 2px;
+}

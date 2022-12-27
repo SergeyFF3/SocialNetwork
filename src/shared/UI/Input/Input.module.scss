@@ -1,0 +1,21 @@
+.Input {
+color: var(--primary-color);
+}
+
+.clear {
+  background: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+.outline {
+  border: 1px solid var(--secondary-color);
+  outline: none;
+  background: transparent;
+
+  &:focus {
+    box-shadow: 0 0 1px 1px mediumpurple;
+    background: var(--bg-color);
+  }
+}
