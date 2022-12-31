@@ -4,7 +4,7 @@ import {USER_LOCALSTORAGE_KEY} from "shared/const/localstorage";
 import {$api} from "shared/api/api";
 
 interface LoginByUsernameProps {
-    username: string
+    email: string
     password: string
 }
 

@@ -9,7 +9,7 @@ type Mods = Record<string, boolean>
 // третим идет массив с дополнительными классами, классы которые не зависят от условий, просто идут как дополнительные
 //                                                                                      |
 // функция должна возвращать из аргументов строку классов
-export function classNames(cls: string, mods: Mods, additional: string[]): string {
+export function classNames(cls: string, mods: Mods, additional: Array<string | undefined> = []): string {
     // Реализация. Возвращаем массив который склеиваем через пробел с помощью функции join.
     // Сначала добавляем cls, затем разворациваем additional (поскольку в процессе разработки в additional
     // будут прилетать undefined его лучше фильтровать по Boolean фильтру)
@@ -21,8 +21,8 @@ export function classNames(cls: string, mods: Mods, additional: string[]): strin
         cls,
         ...additional.filter(Boolean),
         ...Object.entries(mods)
-            .filter(([cls, value]) => Boolean(value))
-            .map(([cls, value]) => cls)
+            .filter(([_, value]) => Boolean(value))
+            .map(([cls]) => cls)
     ]
         .join(' ')
 }

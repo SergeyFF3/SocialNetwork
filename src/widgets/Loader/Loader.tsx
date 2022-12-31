@@ -4,8 +4,7 @@ import './Loader.scss'
 
 export enum SizeLoader {
     SMALL = 'small',
-    MEDIUM = 'medium',
-    LARGE = 'large'
+    MEDIUM = 'medium'
 }
 
 interface LoaderProps {

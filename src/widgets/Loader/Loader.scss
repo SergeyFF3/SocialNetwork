@@ -1,7 +1,8 @@
 .Loader {
-position: absolute;
-
+  height: 80px;
+  width: 80px;
 }
+
 .small {
   transform: scale(.4);
 }
@@ -10,12 +11,6 @@ position: absolute;
   transform: scale(.75);
 }
 
-.lds-ring.large {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
 .lds-ring div {
   box-sizing: border-box;
   display: block;

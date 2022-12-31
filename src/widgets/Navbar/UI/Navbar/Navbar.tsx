@@ -1,13 +1,14 @@
 import React from 'react';
 import {classNames} from "shared/helpers/classNames/classNames";
 import cls from './Navbar.module.scss'
-import AppLink from "shared/UI/AppLink/AppLink";
 import ThemeSwitcher from "widgets/ThemeSwitcher/ThemeSwitcher";
 import {useAppDispatch} from "app/provider/storeProvider/store";
 import {useSelector} from "react-redux";
 import {getUserAuthData, userActions} from "entities/User";
 import Button, {ThemeButton} from "shared/UI/Button/Button";
 import {useNavigate} from 'react-router-dom';
+import {NavbarItemList} from "../../model/items";
+import NavbarItem from "../NavbarItem/NavbarItem";
 
 interface NavbarProps {
     className?: string
@@ -36,8 +37,12 @@ const Navbar = (props: NavbarProps) => {
                         Netty
                     </div>
                     <menu>
-                        <AppLink className={cls.link} to='/profile'>Profile</AppLink>
-                        <AppLink className={cls.link} to='/search'>Search</AppLink>
+                        {NavbarItemList.map(item => (
+                            <NavbarItem
+                                key={item.path}
+                                item={item}
+                            />
+                        ))}
                     </menu>
                     <div className={cls.switcher}>
                         <ThemeSwitcher/>

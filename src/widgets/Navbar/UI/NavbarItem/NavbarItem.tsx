@@ -1,21 +1,25 @@
 import React from 'react';
-import {classNames} from "shared/helpers/classNames/classNames";
 import cls from './NavbarItem.module.scss'
+import AppLink from "shared/UI/AppLink/AppLink";
+import {NavbarItemsType} from "../../model/items";
 
 interface NavbarItemProps {
-    className?: string
+    item: NavbarItemsType
 }
 
 const NavbarItem = (props: NavbarItemProps) => {
 
     const {
-        className
+        item
     } = props
 
     return (
-        <div className={classNames(cls.NavbarItem, {}, [className])}>
-           
-        </div>
+        <AppLink
+            className={cls.link}
+            to={item.path}
+        >
+            {item.text}
+        </AppLink>
     );
 };
 

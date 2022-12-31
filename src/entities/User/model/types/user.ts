@@ -1,6 +1,6 @@
 export interface User {
     id: string
-    username: string
+    email: string
 }
 
 // authData это пользователь, если она undefined значит пользователь не авторизован,

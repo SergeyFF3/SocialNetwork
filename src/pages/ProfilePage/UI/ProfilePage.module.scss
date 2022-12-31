@@ -1,13 +1,18 @@
 .ProfilePage {
+  padding: 40px 0;
+  min-height: 100%;
+}
+
+.container {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.loader {
+  height: calc(100vh - var(--navbar-height));
   display: flex;
   align-items: center;
-  position: relative;
   justify-content: center;
-}
-.test {
-  position: absolute;
-  left: 500px;
-  height: 20px;
-  right: 0;
   width: 100%;
 }

@@ -3,9 +3,10 @@ import {classNames} from "shared/helpers/classNames/classNames";
 import cls from './ProfilePage.module.scss'
 import {useAppDispatch} from "app/provider/storeProvider/store";
 import {useSelector} from "react-redux";
-import Text, {ThemeText} from "shared/UI/Text/Text";
-import {fetchProfileData, getProfileData} from "entities/Profile";
-import { useParams } from 'react-router-dom';
+import {fetchProfileData, getProfileData, ProfileCard} from "entities/Profile";
+import {useParams} from 'react-router-dom';
+import Loader, {SizeLoader} from "widgets/Loader/Loader";
+
 
 interface ProfilePageProps {
     className?: string
@@ -24,21 +25,30 @@ const ProfilePage = (props: ProfilePageProps) => {
         error
     } = useSelector(getProfileData)
 
-    const {id} = useParams<{id: string}>()
+    const {id} = useParams<{ id: string }>()
 
     const dispatch = useAppDispatch()
 
     React.useEffect(() => {
-        if (id) {
-            dispatch(fetchProfileData(id))
-        }
-    }, [dispatch, id])
+        dispatch(fetchProfileData())
+    }, [dispatch])
+
+    if (isLoading) {
+        return (
+            <div className={cls.loader}>
+                <Loader size={SizeLoader.MEDIUM}/>
+            </div>
+        )
+    }
 
     return (
         <div className={classNames(cls.ProfilePage, {}, [className])}>
-            {error && <Text theme={ThemeText.ERROR} title={error}/>}
-            {data?.firstname}
-            profile
+            <div className={cls.container}>
+                <ProfileCard
+                    data={data}
+                    error={error}
+                />
+            </div>
         </div>
     );
 };

@@ -1,3 +1,9 @@
+export interface MaritalStatusType {
+    not_married?: string
+    dating?: string
+    inSearch?: string
+}
+
 export interface Profile {
     id?: string
     firstname?: string
@@ -5,6 +11,8 @@ export interface Profile {
     age?: number
     city?: string
     avatar?: string
+    maritalStatus?: MaritalStatusType
+    hometown?: string
     comments?: string[]
 }
 

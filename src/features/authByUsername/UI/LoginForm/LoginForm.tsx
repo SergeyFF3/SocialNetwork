@@ -7,10 +7,10 @@ import {useAppDispatch} from "app/provider/storeProvider/store";
 import {loginActions} from '../../model/slices/loginSlice';
 import {useSelector} from "react-redux";
 import {
+    getLoginEmail,
     getLoginError,
     getLoginIsLoading,
-    getLoginPassword,
-    getLoginUsername
+    getLoginPassword
 } from "../../model/selectors/getLoginState";
 import {loginByUsername} from "../../model/services/loginByUsername";
 import Text, {SizeText, ThemeText} from "shared/UI/Text/Text";
@@ -29,7 +29,7 @@ const LoginForm = (props: LoginFormProps) => {
 
     const navigate = useNavigate()
 
-    const username = useSelector(getLoginUsername)
+    const email = useSelector(getLoginEmail)
 
     const password = useSelector(getLoginPassword)
 
@@ -38,8 +38,8 @@ const LoginForm = (props: LoginFormProps) => {
     const error = useSelector(getLoginError)
 
     // Для всех функций которые мы куда-то передаем пропсом нужно использовать useCallback, чтобы ссылка никогда не менялась
-    const onChangeUsername = React.useCallback((value: string) => {
-        dispatch(loginActions.setUsername(value))
+    const onChangeEmail = React.useCallback((value: string) => {
+        dispatch(loginActions.setEmail(value))
     }, [dispatch])
 
     const onChangePassword = React.useCallback((value: string) => {
@@ -47,12 +47,12 @@ const LoginForm = (props: LoginFormProps) => {
     }, [dispatch])
 
     const onLogin = React.useCallback(async () => {
-        const result = await dispatch(loginByUsername({password, username}))
+        const result = await dispatch(loginByUsername({password, email}))
 
         if (result.meta.requestStatus === 'fulfilled') {
             navigate('/profile')
         }
-    }, [dispatch, password, username, navigate])
+    }, [dispatch, password, email, navigate])
 
     const onRegistration = React.useCallback(() => {
         navigate('/register')
@@ -82,8 +82,8 @@ const LoginForm = (props: LoginFormProps) => {
                     className={cls.input}
                     theme={ThemeInput.OUTLINE}
                     placeholder="Введите почту"
-                    onChange={onChangeUsername}
-                    value={username}
+                    onChange={onChangeEmail}
+                    value={email}
                 />
                 <Input
                     type='password'
