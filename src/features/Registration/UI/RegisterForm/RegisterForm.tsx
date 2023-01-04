@@ -26,13 +26,9 @@ const RegisterForm = (props: RegisterFormProps) => {
     const dispatch = useAppDispatch()
 
     const {
-        surname,
-        name,
-        email,
-        password,
-        secondPassword,
+        registerData,
         error,
-        gender,
+        // gender,
         isLoading
     } = useSelector(getRegisterData)
 
@@ -42,6 +38,14 @@ const RegisterForm = (props: RegisterFormProps) => {
 
     const onChangeSurname = useCallback((value: string) => {
         dispatch(registerActions.setSurname(value))
+    }, [dispatch])
+
+    const onChangeAge = useCallback((value: number) => {
+        dispatch(registerActions.setAge(value))
+    }, [dispatch])
+
+    const onChangeCity = useCallback((value: string) => {
+        dispatch(registerActions.setCity(value))
     }, [dispatch])
 
     const onChangeEmail = useCallback((value: string) => {
@@ -56,17 +60,17 @@ const RegisterForm = (props: RegisterFormProps) => {
         dispatch(registerActions.setSecondPassword(value))
     }, [dispatch])
 
-    const onChangeGender = useCallback((value: string) => {
-        dispatch(registerActions.setGender(value))
-    }, [dispatch])
+    // const onChangeGender = useCallback((value: string) => {
+    //     dispatch(registerActions.setGender(value))
+    // }, [dispatch])
 
     const onRegister = useCallback(async () => {
-        const result = await dispatch(registerUser({email, password, secondPassword, surname, name}))
+        const result = await dispatch(registerUser(registerData))
 
         if (result.meta.requestStatus === 'fulfilled') {
             navigate('/')
         }
-    }, [dispatch, email, password, secondPassword, surname, name])
+    }, [dispatch, registerData])
 
     const navigateLogin = useCallback( () => {
         navigate('/')
@@ -100,7 +104,7 @@ const RegisterForm = (props: RegisterFormProps) => {
                 <div className={cls.item}>
                     <Input
                         placeholder='Имя'
-                        value={name}
+                        value={registerData.name}
                         onChange={onChangeName}
                         theme={ThemeInput.OUTLINE}
                         tabIndex={1}
@@ -109,18 +113,8 @@ const RegisterForm = (props: RegisterFormProps) => {
                 </div>
                 <div className={cls.item}>
                     <Input
-                        placeholder='Пароль'
-                        value={password}
-                        onChange={onChangePassword}
-                        theme={ThemeInput.OUTLINE}
-                        tabIndex={4}
-                        className={cls.input}
-                    />
-                </div>
-                <div className={cls.item}>
-                    <Input
                         placeholder='Фамилия'
-                        value={surname}
+                        value={registerData.surname}
                         onChange={onChangeSurname}
                         theme={ThemeInput.OUTLINE}
                         tabIndex={2}
@@ -129,39 +123,69 @@ const RegisterForm = (props: RegisterFormProps) => {
                 </div>
                 <div className={cls.item}>
                     <Input
-                        placeholder='Повторите пароль'
-                        value={secondPassword}
-                        onChange={onChangeSecondPassword}
-                        theme={ThemeInput.OUTLINE}
-                        tabIndex={5}
-                        className={cls.input}
-                    />
-                </div>
-                <div className={cls.item}>
-                    <Input
-                        placeholder='Почта'
-                        value={email}
-                        onChange={onChangeEmail}
+                        placeholder='Город'
+                        value={registerData.city}
+                        onChange={onChangeCity}
                         theme={ThemeInput.OUTLINE}
                         tabIndex={3}
                         className={cls.input}
                     />
                 </div>
                 <div className={cls.item}>
+                    <Input
+                        placeholder='Возраст'
+                        value={registerData.age}
+                        onChange={onChangeAge}
+                        theme={ThemeInput.OUTLINE}
+                        tabIndex={4}
+                        className={cls.input}
+                    />
+                </div>
+                <div className={cls.item}>
                     <select
                         className={cls.select}
-                        tabIndex={6}
+                        tabIndex={5}
                     >
                         <option>Не выбрано</option>
                         <option>Мужчина</option>
                         <option>Женщина</option>
                     </select>
                 </div>
+                <div className={cls.item}>
+                    <Input
+                        placeholder='Почта'
+                        value={registerData.email}
+                        onChange={onChangeEmail}
+                        theme={ThemeInput.OUTLINE}
+                        tabIndex={6}
+                        className={cls.input}
+                    />
+                </div>
+                <div className={cls.item}>
+                    <Input
+                        placeholder='Пароль'
+                        value={registerData.password}
+                        onChange={onChangePassword}
+                        theme={ThemeInput.OUTLINE}
+                        tabIndex={7}
+                        className={cls.input}
+                    />
+                </div>
+                <div className={cls.item}>
+                    <Input
+                        placeholder='Повторите пароль'
+                        value={registerData.secondPassword}
+                        onChange={onChangeSecondPassword}
+                        theme={ThemeInput.OUTLINE}
+                        tabIndex={8}
+                        className={cls.input}
+                    />
+                </div>
                 <div className={cls.btnWrapper}>
                     <Button
                         theme={ThemeButton.GREEN}
                         className={cls.btn}
-                        tabIndex={7}
+                        tabIndex={8}
                         onClick={onRegister}
                     >
                         Зарегистрироваться

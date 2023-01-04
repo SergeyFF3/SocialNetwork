@@ -1,3 +1,5 @@
+import {User} from "../../../../entities/User";
+
 export interface MaritalStatusType {
     not_married?: string
     dating?: string
@@ -23,7 +25,7 @@ export interface Profile {
 }
 
 export interface ProfileSchema {
-    data?: Profile
+    data?: User
     isLoading?: boolean
     error?: string
     readonly?: boolean

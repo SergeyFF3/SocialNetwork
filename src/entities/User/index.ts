@@ -1,6 +1,4 @@
-export type { UserSchema } from './model/types/user'
-
-export type { User } from './model/types/user'
+export type { User, GenderProps, UserSchema } from './model/types/user'
 
 export { userActions, userReducer } from './model/slices/userSlice'
 

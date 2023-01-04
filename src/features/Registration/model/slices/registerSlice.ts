@@ -1,16 +1,25 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {GenderProps, RegistrationSchema} from "../types/registration";
+import {RegistrationSchema} from "../types/registration";
 import {registerUser} from "../services/registerUser";
+// import { GenderProps } from "features/Registration";
 
 const initialState: RegistrationSchema = {
-    email: '',
-    password: '',
-    secondPassword: '',
-    name: '',
-    surname: '',
+    registerData: {
+        email: '',
+        password: '',
+        secondPassword: '',
+        name: '',
+        surname: '',
+        age: undefined,
+        city: ''
+        // gender: {
+        //     female: '',
+        //     male: '',
+        //     notSelected: ''
+        // }
+    },
     error: undefined,
     isLoading: false,
-    gender: undefined
 }
 
 export const registerSlice = createSlice({
@@ -18,23 +27,29 @@ export const registerSlice = createSlice({
     initialState,
     reducers: {
         setEmail: (state, action: PayloadAction<string>) => {
-            state.email = action.payload
+            state.registerData.email = action.payload
         },
         setPassword: (state, action: PayloadAction<string>) => {
-            state.password = action.payload
+            state.registerData.password = action.payload
         },
         setSecondPassword: (state, action: PayloadAction<string>) => {
-            state.secondPassword = action.payload
+            state.registerData.secondPassword = action.payload
         },
         setName: (state, action: PayloadAction<string>) => {
-            state.name = action.payload
+            state.registerData.name = action.payload
         },
         setSurname: (state, action: PayloadAction<string>) => {
-            state.surname = action.payload
+            state.registerData.surname = action.payload
         },
-        setGender: (state, action: PayloadAction<GenderProps>) => {
-            state.gender = action.payload
+        setAge: (state, action: PayloadAction<number>) => {
+            state.registerData.age = action.payload
         },
+        setCity: (state, action: PayloadAction<string>) => {
+            state.registerData.city = action.payload
+        },
+        // setGender: (state, action: PayloadAction<string>) => {
+        //     state.gender = action.payload
+        // },
     },
     extraReducers: builder => {
         builder

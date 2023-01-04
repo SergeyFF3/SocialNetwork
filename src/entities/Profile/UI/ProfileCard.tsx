@@ -1,15 +1,15 @@
 import React from 'react';
 import {classNames} from "shared/helpers/classNames/classNames";
 import cls from './ProfileCard.module.scss'
-import {Profile} from "pages/ProfilePage/model/types/profile";
 import Button, {ThemeButton} from "shared/UI/Button/Button";
 import {USER_LOCALSTORAGE_KEY} from "shared/const/localstorage";
 import Text, {SizeText, ThemeText} from 'shared/UI/Text/Text'
 import {EditableProfileCard} from "features/editableProfileCard";
+import {User} from "../../User";
 
 interface ProfileProps {
     className?: string
-    data: Profile
+    data: User
     error: string
 }
 
@@ -20,8 +20,6 @@ const ProfileCard = (props: ProfileProps) => {
         error,
         data
     } = props
-
-    const {user} = JSON.parse(localStorage.getItem(USER_LOCALSTORAGE_KEY))
 
     const [isOpen, setIsOpen] = React.useState(false)
 
@@ -49,7 +47,7 @@ const ProfileCard = (props: ProfileProps) => {
         <div className={classNames(cls.ProfileCard, {}, [className])}>
             <div className={cls.column}>
                 <div className={cls.avatarWrapper}>
-                    <img className={cls.avatar} alt='#' src={data?.avatar}/>
+                    <img className={cls.avatar} alt='#'/>
                     <Button
                         className={cls.btn}
                         theme={ThemeButton.GREEN}
@@ -69,7 +67,7 @@ const ProfileCard = (props: ProfileProps) => {
                     <Text
                         className={cls.name}
                         size={SizeText.L}
-                        title={`${user.name} ${user.surname}`}
+                        title={`${data?.name} ${data?.surname}`}
                     />
                     <Text
                         className={cls.text}

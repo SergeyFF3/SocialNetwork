@@ -36,6 +36,16 @@
       "surname": "Гурин",
       "name": "Георгий",
       "id": 5
+    },
+    {
+      "email": "smatveev@mail.ru",
+      "password": "$2a$10$yZUVg3m2DMzug2VZQ1SYGOQVKu/C27SG3ENvDweOa7tmEBihzaPWu",
+      "secondPassword": "1234",
+      "name": "Сергей",
+      "surname": "Матвеев",
+      "age": "28",
+      "city": "Тихвин",
+      "id": 6
     }
   ],
   "profile": {

@@ -1,16 +1,7 @@
-export interface GenderProps {
-    male?: string
-    female?: string
-    notSelected?: string
-}
+import {User} from "entities/User";
 
 export interface RegistrationSchema {
-    email: string
-    password: string
-    secondPassword: string
-    name: string
-    surname: string
+    registerData: User
     isLoading?: boolean
     error?: string
-    gender?: GenderProps
 }

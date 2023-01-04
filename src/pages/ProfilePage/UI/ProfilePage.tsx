@@ -26,6 +26,7 @@ const ProfilePage = (props: ProfilePageProps) => {
         readonly,
         error
     } = useSelector(getProfileData)
+    console.log(data)
 
     const {id} = useParams<{ id: string }>()
 
