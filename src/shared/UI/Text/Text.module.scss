@@ -6,20 +6,16 @@
   color: var(--secondary-color);
 }
 
-.s {
-  font: var(--font-s);
+.left {
+  text-align: left;
 }
 
-.m {
-  font: var(--font-m);
+.center {
+  text-align: center;
 }
 
-.l {
-  font: var(--font-l);
-}
-
-.xl {
-  font: var(--font-xl);
+.right {
+  text-align: right;
 }
 
 .error {
@@ -36,4 +32,20 @@
     color: #b40000;
     margin: 5px 0;
   }
+}
+
+.s {
+  font: var(--font-s);
+}
+
+.m {
+  font: var(--font-m);
+}
+
+.l {
+  font: var(--font-l);
+}
+
+.xl {
+  font: var(--font-xl);
 }

@@ -3,10 +3,10 @@ import {useDispatch} from "react-redux";
 import {userReducer, UserSchema} from "entities/User";
 import {LoginSchema} from "features/authByUsername";
 import { loginReducer } from "features/authByUsername/model/slices/loginSlice";
-import {ProfileSchema} from "entities/Profile";
-import { profileReducer } from "entities/Profile/model/slices/profileSlice";
+import { profileReducer } from "pages/ProfilePage/model/slices/profileSlice";
 import {RegistrationSchema} from "features/Registration";
 import {registerReducer} from "features/Registration/model/slices/registerSlice";
+import {ProfileSchema} from "pages/ProfilePage";
 
 const RootReducer = combineReducers({
     user: userReducer,

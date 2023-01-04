@@ -17,13 +17,14 @@ export enum ThemeInput {
 // Он позволяет забрать из типа все пропсы, но исключить какие-то которые нам не нужны.
 // Первым аргументом указываем что хотим забрать, а вторым что хотим исключить
 // }
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly'>
 
 interface InputProps extends HTMLInputProps {
     className?: string
     value?: string
     onChange?: (value: string) => void
     theme?: ThemeInput
+    readonly?: boolean
 }
 
 const Input = (props: InputProps) => {
@@ -32,6 +33,7 @@ const Input = (props: InputProps) => {
         className,
         value,
         onChange,
+        readonly,
         theme,
         type = 'text',
         ...otherProps
@@ -42,14 +44,14 @@ const Input = (props: InputProps) => {
     }
 
     const Mods: Record<string, boolean> = {
-        [cls[theme]]: true,
-
+        [cls.readonly]: readonly
     }
 
     return (
         <input
-            className={classNames(cls.Input, Mods, [className])}
+            className={classNames(cls.Input, Mods, [className, cls[theme]])}
             value={value}
+            readOnly={readonly}
             onChange={onChangeHandler}
             type={type}
             {...otherProps}

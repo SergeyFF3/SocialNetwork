@@ -3,9 +3,11 @@ import {classNames} from "shared/helpers/classNames/classNames";
 import cls from './ProfilePage.module.scss'
 import {useAppDispatch} from "app/provider/storeProvider/store";
 import {useSelector} from "react-redux";
-import {fetchProfileData, getProfileData, ProfileCard} from "entities/Profile";
+import { ProfileCard} from "entities/Profile";
 import {useParams} from 'react-router-dom';
 import Loader, {SizeLoader} from "widgets/Loader/Loader";
+import {fetchProfileData} from "../model/services/fetchProfileData";
+import {getProfileData} from "../model/selectors/getProfileData";
 
 
 interface ProfilePageProps {

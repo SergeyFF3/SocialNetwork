@@ -1,11 +1,11 @@
 import React from 'react';
 import {classNames} from "shared/helpers/classNames/classNames";
 import cls from './ProfileCard.module.scss'
-import {Profile} from "../model/types/profile";
+import {Profile} from "pages/ProfilePage/model/types/profile";
 import Button, {ThemeButton} from "shared/UI/Button/Button";
 import {USER_LOCALSTORAGE_KEY} from "shared/const/localstorage";
 import Text, {SizeText, ThemeText} from 'shared/UI/Text/Text'
-import Modal from "shared/UI/Modal/Modal";
+import {EditableProfileCard} from "features/editableProfileCard";
 
 interface ProfileProps {
     className?: string
@@ -50,20 +50,6 @@ const ProfileCard = (props: ProfileProps) => {
             <div className={cls.column}>
                 <div className={cls.avatarWrapper}>
                     <img className={cls.avatar} alt='#' src={data?.avatar}/>
-                    <Modal
-                        isOpen={isOpen}
-                        onClose={closeHandler}
-                    >
-                        <div className={cls.modal}>
-                            <Text
-                                size={SizeText.L}
-                                title='Редактирование профиля'
-                            />
-                            <form>
-
-                            </form>
-                        </div>
-                    </Modal>
                     <Button
                         className={cls.btn}
                         theme={ThemeButton.GREEN}
@@ -71,6 +57,11 @@ const ProfileCard = (props: ProfileProps) => {
                     >
                         Редактировать
                     </Button>
+                    <EditableProfileCard
+                        data={data}
+                        isOpen={isOpen}
+                        onClose={closeHandler}
+                    />
                 </div>
             </div>
             <div className={cls.column}>

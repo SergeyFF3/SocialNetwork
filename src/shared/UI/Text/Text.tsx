@@ -9,6 +9,12 @@ export enum SizeText {
     XL = 'xl'
 }
 
+export enum AlignText {
+    LEFT = 'left',
+    CENTER = 'center',
+    RIGHT = 'right'
+}
+
 export enum ThemeText {
     ERROR = 'error'
 }
@@ -19,6 +25,7 @@ interface TextProps{
     title?: string
     text?: string
     size?: SizeText
+    align?: AlignText
 }
 
 const Text = (props: TextProps) => {
@@ -27,17 +34,13 @@ const Text = (props: TextProps) => {
         className,
         theme,
         text,
+        align,
         size,
         title
     } = props
 
-    const Mods: Record<string, boolean> = {
-        [cls[theme]]: true,
-        [cls[size]]: true
-    }
-
     return (
-        <div className={classNames(cls.Text, Mods, [className])}>
+        <div className={classNames(cls.Text, {}, [className, cls[theme], cls[size], cls[align]])}>
             {title && <p className={cls.title}>{title}</p>}
             {text && <p className={cls.text}>{text}</p>}
         </div>

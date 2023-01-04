@@ -1,0 +1,35 @@
+.editing {
+  margin-bottom: 20px;
+}
+
+.item {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.age {
+  margin: 0 10px 0 50px;
+}
+
+.city {
+  margin: 0 10px 0 0;
+}
+
+.hometown {
+  margin: 0 10px 0 10px;
+}
+
+.btnForm {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnEdit {
+  width: 100%;
+  margin-left: 5px;
+}
+
+.btnCancel {
+  margin-right: 5px;
+  width: 100%;
+}

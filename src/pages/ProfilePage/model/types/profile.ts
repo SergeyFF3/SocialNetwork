@@ -4,6 +4,12 @@ export interface MaritalStatusType {
     inSearch?: string
 }
 
+export enum MaritalStatusEnum {
+    NOT_MARRIED = 'Не женат',
+    DATING = 'Встречаюсь',
+    inSearch = 'В активном поиске'
+}
+
 export interface Profile {
     id?: string
     firstname?: string
@@ -11,7 +17,7 @@ export interface Profile {
     age?: number
     city?: string
     avatar?: string
-    maritalStatus?: MaritalStatusType
+    maritalStatus?: MaritalStatusEnum
     hometown?: string
     comments?: string[]
 }
