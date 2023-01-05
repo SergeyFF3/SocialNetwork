@@ -20,7 +20,7 @@
 
 .content {
   max-width: 60%;
-  padding: 20px;
+  padding: 40px;
   background: var(--bg-color);
   border-radius: 20px;
   transition: .3s transform;
@@ -39,5 +39,18 @@
 .closing {
   .content {
     transform: scale(.2);
+  }
+}
+
+.spanClose {
+  position: absolute;
+  cursor: pointer;
+  right: 15px;
+  top: 15px;
+  padding: 5px;
+  opacity: .7;
+
+  &:hover {
+    opacity: 1;
   }
 }

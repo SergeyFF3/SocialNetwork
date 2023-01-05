@@ -1,16 +1,25 @@
 import React from 'react';
 import {classNames} from "shared/helpers/classNames/classNames";
 import cls from './ProfileCard.module.scss'
-import {Profile} from "pages/ProfilePage/model/types/profile";
 import Button, {ThemeButton} from "shared/UI/Button/Button";
 import {USER_LOCALSTORAGE_KEY} from "shared/const/localstorage";
-import Text, {SizeText, ThemeText} from 'shared/UI/Text/Text'
-import {EditableProfileCard} from "features/editableProfileCard";
+import Text, {AlignText, SizeText, ThemeText} from 'shared/UI/Text/Text'
+import Input, {ThemeInput} from "shared/UI/Input/Input";
+import Modal from "shared/UI/Modal/Modal";
+import {Profile} from "features/editableProfileCard";
 
 interface ProfileProps {
     className?: string
-    data: Profile
+    formData: Profile
+    onChangeAge?: (value: number) => void
+    isOpen?: boolean
+    onClose?: () => void
+    onOpen?: () => void
     error: string
+    onChangeHometown: (value: string) => void
+    onChangeCity: (value: string) => void
+    cancelEdit: () => void
+    saveData?: () => void
 }
 
 const ProfileCard = (props: ProfileProps) => {
@@ -18,20 +27,18 @@ const ProfileCard = (props: ProfileProps) => {
     const {
         className,
         error,
-        data
+        isOpen,
+        onClose,
+        onOpen,
+        formData,
+        onChangeAge,
+        cancelEdit,
+        onChangeCity,
+        onChangeHometown,
+        saveData
     } = props
 
     const {user} = JSON.parse(localStorage.getItem(USER_LOCALSTORAGE_KEY))
-
-    const [isOpen, setIsOpen] = React.useState(false)
-
-    const closeHandler = React.useCallback(() => {
-        setIsOpen(false)
-    }, [])
-
-    const openHandler = React.useCallback(() => {
-        setIsOpen(true)
-    }, [])
 
     if (error) {
         return (
@@ -49,19 +56,79 @@ const ProfileCard = (props: ProfileProps) => {
         <div className={classNames(cls.ProfileCard, {}, [className])}>
             <div className={cls.column}>
                 <div className={cls.avatarWrapper}>
-                    <img className={cls.avatar} alt='#' src={data?.avatar}/>
+                    <img className={cls.avatar} alt='#' src={formData?.avatar}/>
                     <Button
                         className={cls.btn}
                         theme={ThemeButton.GREEN}
-                        onClick={openHandler}
+                        onClick={onOpen}
                     >
                         Редактировать
                     </Button>
-                    <EditableProfileCard
-                        data={data}
+                    <Modal
                         isOpen={isOpen}
-                        onClose={closeHandler}
-                    />
+                        onClose={onClose}
+                    >
+                        <Text
+                            className={cls.editing}
+                            align={AlignText.CENTER}
+                            size={SizeText.L}
+                            title='Редактирование профиля'
+                        />
+                        <form>
+                            <div className={cls.item}>
+                                <Text
+                                    className={cls.age}
+                                    text='Возраст:'
+                                />
+                                <Input
+                                    theme={ThemeInput.OUTLINE}
+                                    type='text'
+                                    value={formData?.age}
+                                    onChange={onChangeAge}
+                                />
+                            </div>
+                            <div className={cls.item}>
+                                <Text
+                                    className={cls.city}
+                                    text='Текущий город:'
+                                />
+                                <Input
+                                    theme={ThemeInput.OUTLINE}
+                                    type='text'
+                                    value={formData?.city}
+                                    onChange={onChangeCity}
+                                />
+                            </div>
+                            <div className={cls.item}>
+                                <Text
+                                    className={cls.hometown}
+                                    text='Родной город:'
+                                />
+                                <Input
+                                    theme={ThemeInput.OUTLINE}
+                                    type='text'
+                                    value={formData?.hometown}
+                                    onChange={onChangeHometown}
+                                />
+                            </div>
+                            <div className={cls.btnForm}>
+                                <Button
+                                    theme={ThemeButton.NORMAL}
+                                    className={cls.btnCancel}
+                                    onClick={cancelEdit}
+                                >
+                                    Вернуть
+                                </Button>
+                                <Button
+                                    theme={ThemeButton.GREEN}
+                                    className={cls.btnEdit}
+                                    onClick={saveData}
+                                >
+                                    Сохранить
+                                </Button>
+                            </div>
+                        </form>
+                    </Modal>
                 </div>
             </div>
             <div className={cls.column}>
@@ -73,12 +140,16 @@ const ProfileCard = (props: ProfileProps) => {
                     />
                     <Text
                         className={cls.text}
-                        text={`Возраст: ${data?.age}`}
+                        text={`Возраст: ${formData?.age}`}
                     />
                     <Text
                         className={cls.text}
-                        text={`Город: ${data?.city}`}
+                        text={`Город: ${formData?.city}`}
                     />
+                    {formData?.hometown && <Text
+                      className={cls.text}
+                      text={`Родной город: ${formData?.hometown}`}
+                    />}
                 </div>
             </div>
         </div>

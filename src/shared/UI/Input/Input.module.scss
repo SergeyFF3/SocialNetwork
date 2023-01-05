@@ -12,6 +12,9 @@ color: var(--primary-color);
 .outline {
   border: 1px solid var(--secondary-color);
   outline: none;
+  height: 32px;
+  padding: 10px;
+  border-radius: 10px;
   background: transparent;
 
   &:focus {

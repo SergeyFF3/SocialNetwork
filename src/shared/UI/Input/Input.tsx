@@ -8,7 +8,7 @@ export enum ThemeInput {
 }
 
 // Если сделать такую запись :
-// interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
+// interfaces InputProps extends InputHTMLAttributes<HTMLInputElement>{
 //     className?: string
 //      value: string
 //      onChange: (string) => void
@@ -21,8 +21,8 @@ type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onC
 
 interface InputProps extends HTMLInputProps {
     className?: string
-    value?: string
-    onChange?: (value: string) => void
+    value?: string | number
+    onChange?: (value: string | number) => void
     theme?: ThemeInput
     readonly?: boolean
 }

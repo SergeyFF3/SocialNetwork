@@ -59,6 +59,12 @@ const Modal = (props: ModalProps) => {
                    className={cls.content}
                    onClick={onContentClick}
                >
+                   <span
+                       onClick={closingHandler}
+                       className={cls.spanClose}
+                   >
+                       X
+                   </span>
                    {children}
                </div>
            </div>

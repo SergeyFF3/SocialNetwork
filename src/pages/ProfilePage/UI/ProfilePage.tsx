@@ -3,11 +3,10 @@ import {classNames} from "shared/helpers/classNames/classNames";
 import cls from './ProfilePage.module.scss'
 import {useAppDispatch} from "app/provider/storeProvider/store";
 import {useSelector} from "react-redux";
-import { ProfileCard} from "entities/Profile";
 import {useParams} from 'react-router-dom';
 import Loader, {SizeLoader} from "widgets/Loader/Loader";
-import {fetchProfileData} from "../model/services/fetchProfileData";
-import {getProfileData} from "../model/selectors/getProfileData";
+import {EditableProfileCard, fetchProfileData, getFormData, getProfileData} from "features/editableProfileCard";
+
 
 
 interface ProfilePageProps {
@@ -21,11 +20,11 @@ const ProfilePage = (props: ProfilePageProps) => {
     } = props
 
     const {
-        data,
         isLoading,
-        readonly,
         error
     } = useSelector(getProfileData)
+
+    const formData = useSelector(getFormData)
 
     const {id} = useParams<{ id: string }>()
 
@@ -46,9 +45,9 @@ const ProfilePage = (props: ProfilePageProps) => {
     return (
         <div className={classNames(cls.ProfilePage, {}, [className])}>
             <div className={cls.container}>
-                <ProfileCard
-                    data={data}
-                    error={error}
+                <EditableProfileCard
+                formData={formData}
+                error={error}
                 />
             </div>
         </div>
