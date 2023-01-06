@@ -44,11 +44,19 @@
       "surname": "petrov",
       "name": "alex",
       "id": 6
+    },
+    {
+      "email": "gmail@mail.ru",
+      "password": "$2a$10$XTQBmyeVEBjFbsgcKwQxVOjVk7uuf6fq6sUmFxSw4WrH8wZ2NDYuW",
+      "secondPassword": "1234",
+      "surname": "Григорьев",
+      "name": "Гоша",
+      "id": 7
     }
   ],
   "profile": {
     "age": "10",
     "city": "Tikhvin",
-    "hometown": ""
+    "hometown": "sfjglkdf"
   }
 }

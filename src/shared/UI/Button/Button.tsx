@@ -36,15 +36,13 @@ const Button: React.FC<PropsWithChildren<ButtonProps>> = (props) => {
     } = props
 
     const Mods: Record<string, boolean> = {
-        [cls[theme]]: true,
-        [cls[size]]: true,
         [cls.disabled]: disabled
     }
 
     return (
         <button
             type='button'
-            className={classNames(cls.Button, Mods, [className])}
+            className={classNames(cls.Button, Mods, [className, cls[theme], cls[size]])}
             disabled={disabled}
             {...otherProps}
         >

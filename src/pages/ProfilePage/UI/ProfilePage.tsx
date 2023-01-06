@@ -1,34 +1,47 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {classNames} from "shared/helpers/classNames/classNames";
 import cls from './ProfilePage.module.scss'
 import {useAppDispatch} from "app/provider/storeProvider/store";
 import {useSelector} from "react-redux";
-import {useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import Loader, {SizeLoader} from "widgets/Loader/Loader";
-import {EditableProfileCard, fetchProfileData, getFormData, getProfileData} from "features/editableProfileCard";
-
-
+import {getProfileIsLoading} from "../model/selectors/getProfileIsLoading";
+import {getProfileError} from "../model/selectors/getProfileError";
+import {ProfileCard} from "entities/Profile";
+import {fetchProfileData} from "../model/services/fetchProfileData";
+import {getProfileFormData} from "../model/selectors/getProfileFormData";
 
 interface ProfilePageProps {
     className?: string
 }
 
-const ProfilePage = (props: ProfilePageProps) => {
-
-    const {
-        className
-    } = props
-
-    const {
-        isLoading,
-        error
-    } = useSelector(getProfileData)
-
-    const formData = useSelector(getFormData)
+const ProfilePage = ({className}: ProfilePageProps) => {
 
     const {id} = useParams<{ id: string }>()
 
+    const navigate = useNavigate()
+
     const dispatch = useAppDispatch()
+
+    const formData = useSelector(getProfileFormData)
+
+    const isLoading = useSelector(getProfileIsLoading)
+
+    const error = useSelector(getProfileError)
+
+    const [isOpen, setIsOpen] = React.useState(false)
+
+    const closeHandler = useCallback(() => {
+        setIsOpen(false)
+    }, [])
+
+    const openHandler = useCallback(() => {
+        setIsOpen(true)
+    }, [])
+
+    const navigateEdit = React.useCallback(() => {
+        navigate('/edit')
+    }, [navigate])
 
     React.useEffect(() => {
         dispatch(fetchProfileData())
@@ -45,9 +58,13 @@ const ProfilePage = (props: ProfilePageProps) => {
     return (
         <div className={classNames(cls.ProfilePage, {}, [className])}>
             <div className={cls.container}>
-                <EditableProfileCard
-                formData={formData}
-                error={error}
+                <ProfileCard
+                    data={formData}
+                    error={error}
+                    isOpen={isOpen}
+                    onClose={closeHandler}
+                    onOpen={openHandler}
+                    navigate={navigateEdit}
                 />
             </div>
         </div>

@@ -5,18 +5,21 @@ import {SearchPage} from "pages/SearchPage";
 import {NotFoundPage} from "pages/NotFoundPage";
 import AuthPage from "pages/AuthPage/UI/AuthPage";
 import {RegisterPage} from "pages/RegisterPage";
+import {EditPage} from "pages/EditPage";
 
 enum AppRoutes {
     AUTH = 'auth',
     REGISTER = 'register',
+    EDIT = 'edit',
     PROFILE = 'profile',
     SEARCH = 'search',
-    NOT_FOUND = 'not_found'
+    NOT_FOUND = 'not_found',
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.AUTH]: '/',
     [AppRoutes.REGISTER]: '/register',
+    [AppRoutes.EDIT]: '/edit',
     [AppRoutes.PROFILE]: '/profile',
     [AppRoutes.SEARCH]: '/search',
     [AppRoutes.NOT_FOUND]: '*'
@@ -32,6 +35,10 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     [AppRoutes.REGISTER]: {
         path: '/register',
         element: <RegisterPage/>
+    },
+    [AppRoutes.EDIT]: {
+        path: RoutePath.edit,
+        element: <EditPage/>
     },
     [AppRoutes.PROFILE]: {
         // path: `${RoutePath.profile}:id`,

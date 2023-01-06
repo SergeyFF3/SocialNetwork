@@ -1,6 +1,7 @@
 import React, {Suspense} from 'react';
 import {routeConfig} from "shared/config/routeConfig/routeConfig";
 import {Route, Routes} from 'react-router-dom';
+import Loader from "widgets/Loader/Loader";
 
 // Метод Object.values возвращает массив собственных перечисляемых значений свойств данного объекта со строковыми ключами.
 const AppRouter = () => {
@@ -12,7 +13,7 @@ const AppRouter = () => {
                     key={path}
                     path={path}
                     element={
-                        <Suspense fallback={'Loading'}>
+                        <Suspense fallback={<Loader/>}>
                             {element}
                         </Suspense>
                     }

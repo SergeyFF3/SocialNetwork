@@ -2,24 +2,18 @@ import React from 'react';
 import {classNames} from "shared/helpers/classNames/classNames";
 import cls from './ProfileCard.module.scss'
 import Button, {ThemeButton} from "shared/UI/Button/Button";
-import {USER_LOCALSTORAGE_KEY} from "shared/const/localstorage";
 import Text, {AlignText, SizeText, ThemeText} from 'shared/UI/Text/Text'
-import Input, {ThemeInput} from "shared/UI/Input/Input";
 import Modal from "shared/UI/Modal/Modal";
-import {Profile} from "features/editableProfileCard";
+import {Profile} from '../model/types/profile';
 
 interface ProfileProps {
     className?: string
-    formData: Profile
-    onChangeAge?: (value: number) => void
+    data: Profile
+    error: string
     isOpen?: boolean
     onClose?: () => void
     onOpen?: () => void
-    error: string
-    onChangeHometown: (value: string) => void
-    onChangeCity: (value: string) => void
-    cancelEdit: () => void
-    saveData?: () => void
+    navigate?: () => void
 }
 
 const ProfileCard = (props: ProfileProps) => {
@@ -30,15 +24,9 @@ const ProfileCard = (props: ProfileProps) => {
         isOpen,
         onClose,
         onOpen,
-        formData,
-        onChangeAge,
-        cancelEdit,
-        onChangeCity,
-        onChangeHometown,
-        saveData
+        data,
+        navigate
     } = props
-
-    const {user} = JSON.parse(localStorage.getItem(USER_LOCALSTORAGE_KEY))
 
     if (error) {
         return (
@@ -54,104 +42,69 @@ const ProfileCard = (props: ProfileProps) => {
 
     return (
         <div className={classNames(cls.ProfileCard, {}, [className])}>
-            <div className={cls.column}>
+            <div className={cls.headerProfile}>
+                <select className={cls.selectHeader}>
+                    <option>Красный</option>
+                </select>
+            </div>
+            <div className={cls.headerBottom}>
                 <div className={cls.avatarWrapper}>
-                    <img className={cls.avatar} alt='#' src={formData?.avatar}/>
-                    <Button
-                        className={cls.btn}
-                        theme={ThemeButton.GREEN}
-                        onClick={onOpen}
-                    >
-                        Редактировать
-                    </Button>
-                    <Modal
-                        isOpen={isOpen}
-                        onClose={onClose}
-                    >
+                    <img className={cls.avatar}/>
+                </div>
+                <div className={cls.info}>
+                    <div className={cls.username}>
                         <Text
-                            className={cls.editing}
-                            align={AlignText.CENTER}
                             size={SizeText.L}
-                            title='Редактирование профиля'
+                            title={`${data?.firstname} ${data?.lastname}`}
                         />
-                        <form>
-                            <div className={cls.item}>
-                                <Text
-                                    className={cls.age}
-                                    text='Возраст:'
-                                />
-                                <Input
-                                    theme={ThemeInput.OUTLINE}
-                                    type='text'
-                                    value={formData?.age}
-                                    onChange={onChangeAge}
-                                />
-                            </div>
-                            <div className={cls.item}>
-                                <Text
-                                    className={cls.city}
-                                    text='Текущий город:'
-                                />
-                                <Input
-                                    theme={ThemeInput.OUTLINE}
-                                    type='text'
-                                    value={formData?.city}
-                                    onChange={onChangeCity}
-                                />
-                            </div>
-                            <div className={cls.item}>
-                                <Text
-                                    className={cls.hometown}
-                                    text='Родной город:'
-                                />
-                                <Input
-                                    theme={ThemeInput.OUTLINE}
-                                    type='text'
-                                    value={formData?.hometown}
-                                    onChange={onChangeHometown}
-                                />
-                            </div>
-                            <div className={cls.btnForm}>
-                                <Button
-                                    theme={ThemeButton.NORMAL}
-                                    className={cls.btnCancel}
-                                    onClick={cancelEdit}
-                                >
-                                    Вернуть
-                                </Button>
-                                <Button
-                                    theme={ThemeButton.GREEN}
-                                    className={cls.btnEdit}
-                                    onClick={saveData}
-                                >
-                                    Сохранить
-                                </Button>
-                            </div>
-                        </form>
-                    </Modal>
+                        <Button
+                            theme={ThemeButton.NORMAL}
+                            onClick={navigate}
+                        >
+                            Редактировать профиль
+                        </Button>
+                    </div>
+                    <div className={cls.description}>
+                        <p className={cls.item}>{data?.city}</p>
+                        <p className={cls.item}>{data?.hometown}</p>
+                        <Button
+                            className={cls.item}
+                            theme={ThemeButton.CLEAR}
+                            onClick={onOpen}
+                        >
+                            Подробнее
+                        </Button>
+                    </div>
                 </div>
             </div>
-            <div className={cls.column}>
-                <div className={cls.description}>
+            <Modal
+                isOpen={isOpen}
+                onClose={onClose}
+            >
+                <div className={cls.modal}>
                     <Text
-                        className={cls.name}
-                        size={SizeText.L}
-                        title={`${user.name} ${user.surname}`}
+                        className={cls.detailInfo}
+                        align={AlignText.LEFT}
+                        size={SizeText.M}
+                        title='Подробная информация'
                     />
-                    <Text
-                        className={cls.text}
-                        text={`Возраст: ${formData?.age}`}
-                    />
-                    <Text
-                        className={cls.text}
-                        text={`Город: ${formData?.city}`}
-                    />
-                    {formData?.hometown && <Text
-                      className={cls.text}
-                      text={`Родной город: ${formData?.hometown}`}
-                    />}
+                    <div className={cls.id}>{data?.id}</div>
+                    <div className={cls.detailDesc}>
+                        <Text
+                            className={cls.itemModal}
+                            text={`Возраст: ${data?.age}`}
+                        />
+                        <Text
+                            className={cls.itemModal}
+                            text={`Город: ${data?.city}`}
+                        />
+                        <Text
+                            className={cls.itemModal}
+                            text={`Родной город: ${data?.hometown}`}
+                        />
+                    </div>
                 </div>
-            </div>
+            </Modal>
         </div>
     );
 };
