@@ -5,11 +5,13 @@ import {useAppDispatch} from "app/provider/storeProvider/store";
 import {useSelector} from "react-redux";
 import {useNavigate, useParams} from 'react-router-dom';
 import Loader, {SizeLoader} from "widgets/Loader/Loader";
-import {getProfileIsLoading} from "../model/selectors/getProfileIsLoading";
-import {getProfileError} from "../model/selectors/getProfileError";
-import {ProfileCard} from "entities/Profile";
-import {fetchProfileData} from "../model/services/fetchProfileData";
-import {getProfileFormData} from "../model/selectors/getProfileFormData";
+import {
+    fetchProfileData,
+    getProfileData,
+    getProfileError,
+    getProfileIsLoading,
+    ProfileCard
+} from "entities/Profile";
 
 interface ProfilePageProps {
     className?: string
@@ -23,7 +25,7 @@ const ProfilePage = ({className}: ProfilePageProps) => {
 
     const dispatch = useAppDispatch()
 
-    const formData = useSelector(getProfileFormData)
+    const data = useSelector(getProfileData)
 
     const isLoading = useSelector(getProfileIsLoading)
 
@@ -39,7 +41,7 @@ const ProfilePage = ({className}: ProfilePageProps) => {
         setIsOpen(true)
     }, [])
 
-    const navigateEdit = React.useCallback(() => {
+    const navigateEdit = useCallback(() => {
         navigate('/edit')
     }, [navigate])
 
@@ -59,12 +61,12 @@ const ProfilePage = ({className}: ProfilePageProps) => {
         <div className={classNames(cls.ProfilePage, {}, [className])}>
             <div className={cls.container}>
                 <ProfileCard
-                    data={formData}
+                    data={data}
                     error={error}
                     isOpen={isOpen}
                     onClose={closeHandler}
                     onOpen={openHandler}
-                    navigate={navigateEdit}
+                    navigateEdit={navigateEdit}
                 />
             </div>
         </div>

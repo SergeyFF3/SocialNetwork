@@ -4,7 +4,7 @@ import cls from './ProfileCard.module.scss'
 import Button, {ThemeButton} from "shared/UI/Button/Button";
 import Text, {AlignText, SizeText, ThemeText} from 'shared/UI/Text/Text'
 import Modal from "shared/UI/Modal/Modal";
-import {Profile} from '../model/types/profile';
+import {Profile} from "../model/types/profile";
 
 interface ProfileProps {
     className?: string
@@ -13,7 +13,7 @@ interface ProfileProps {
     isOpen?: boolean
     onClose?: () => void
     onOpen?: () => void
-    navigate?: () => void
+    navigateEdit?: () => void
 }
 
 const ProfileCard = (props: ProfileProps) => {
@@ -25,7 +25,7 @@ const ProfileCard = (props: ProfileProps) => {
         onClose,
         onOpen,
         data,
-        navigate
+        navigateEdit
     } = props
 
     if (error) {
@@ -49,7 +49,7 @@ const ProfileCard = (props: ProfileProps) => {
             </div>
             <div className={cls.headerBottom}>
                 <div className={cls.avatarWrapper}>
-                    <img className={cls.avatar}/>
+                    <img alt='Аватар пользователя' className={cls.avatar}/>
                 </div>
                 <div className={cls.info}>
                     <div className={cls.username}>
@@ -59,13 +59,14 @@ const ProfileCard = (props: ProfileProps) => {
                         />
                         <Button
                             theme={ThemeButton.NORMAL}
-                            onClick={navigate}
+                            onClick={navigateEdit}
                         >
                             Редактировать профиль
                         </Button>
                     </div>
                     <div className={cls.description}>
                         <p className={cls.item}>{data?.city}</p>
+                        <p className={cls.item}>{data?.age}</p>
                         <p className={cls.item}>{data?.hometown}</p>
                         <Button
                             className={cls.item}

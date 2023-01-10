@@ -1,26 +1,30 @@
 import React from 'react';
 import {classNames} from "shared/helpers/classNames/classNames";
-import cls from './ProfileEditCard.module.scss'
+import cls from './ProfileEdit.module.scss'
 import {Profile} from "../../Profile";
-import Input, {ThemeInput} from "shared/UI/Input/Input";
-import Button, {ThemeButton} from 'shared/UI/Button/Button';
-import Text from 'shared/UI/Text/Text'
+import Text, {SizeText, ThemeText} from "../../../shared/UI/Text/Text";
+import Input, {ThemeInput} from "../../../shared/UI/Input/Input";
+import Button, {ThemeButton} from "../../../shared/UI/Button/Button";
 
-interface ProfileEditCardProps {
+interface ProfileEditProps {
     className?: string
     data?: Profile
-    onChangeAge?: (value: number) => void
-    onChangeHometown: (value: string) => void
-    onChangeCity: (value: string) => void
-    cancelEdit: () => void
+    formData?: Profile
+    error?: string
+    onChangeAge?: (value?: number) => void
+    onChangeHometown?: (value?: string) => void
+    onChangeCity?: (value?: string) => void
+    cancelEdit?: () => void
     saveData?: () => void
 }
 
-const ProfileEditCard = (props: ProfileEditCardProps) => {
+const ProfileEdit = (props: ProfileEditProps) => {
 
     const {
         className,
         data,
+        formData,
+        error,
         onChangeAge,
         cancelEdit,
         onChangeCity,
@@ -28,9 +32,21 @@ const ProfileEditCard = (props: ProfileEditCardProps) => {
         saveData
     } = props
 
+    if (error) {
+        return (
+            <div className={cls.error}>
+                {error && <Text
+                  theme={ThemeText.ERROR}
+                  size={SizeText.L}
+                  title={error}
+                />}
+            </div>
+        )
+    }
+
     return (
         <div className={classNames(cls.ProfileEditCard, {}, [className])}>
-            {data?.city}
+            {data?.city} {data?.age} {data?.hometown}
             <form>
                 <div className={cls.item}>
                     <Text
@@ -40,7 +56,7 @@ const ProfileEditCard = (props: ProfileEditCardProps) => {
                     <Input
                         theme={ThemeInput.OUTLINE}
                         type='text'
-                        value={data?.age}
+                        value={formData?.age}
                         onChange={onChangeAge}
                     />
                 </div>
@@ -52,7 +68,7 @@ const ProfileEditCard = (props: ProfileEditCardProps) => {
                     <Input
                         theme={ThemeInput.OUTLINE}
                         type='text'
-                        value={data?.city}
+                        value={formData?.city}
                         onChange={onChangeCity}
                     />
                 </div>
@@ -64,7 +80,7 @@ const ProfileEditCard = (props: ProfileEditCardProps) => {
                     <Input
                         theme={ThemeInput.OUTLINE}
                         type='text'
-                        value={data?.hometown}
+                        value={formData?.hometown}
                         onChange={onChangeHometown}
                     />
                 </div>
@@ -89,4 +105,4 @@ const ProfileEditCard = (props: ProfileEditCardProps) => {
     );
 };
 
-export default React.memo(ProfileEditCard);
+export default React.memo(ProfileEdit);

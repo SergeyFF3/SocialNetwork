@@ -1,8 +1,10 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {Profile} from "entities/Profile/model/types/profile";
+import {Profile} from "../types/profile";
 import {$api} from "shared/api/api";
 import {ThunkConfig} from "shared/config/interfaces/thunkConfig";
-import {getProfileFormData} from "pages/ProfilePage";
+import {getProfileFormData} from "../selectors/getProfileData";
+
+
 
 export const updateProfileData = createAsyncThunk<Profile,void, ThunkConfig<string>> (
     'profile/updateProfileData',

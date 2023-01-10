@@ -14,7 +14,7 @@ const SearchPage = (props: SearchPageProps) => {
 
     return (
         <div className={classNames(cls.SearchPage, {}, [className])}>
-           Search
+            Search
         </div>
     );
 };

@@ -5,7 +5,7 @@ import {SearchPage} from "pages/SearchPage";
 import {NotFoundPage} from "pages/NotFoundPage";
 import AuthPage from "pages/AuthPage/UI/AuthPage";
 import {RegisterPage} from "pages/RegisterPage";
-import {EditPage} from "pages/EditPage";
+import EditPage from "pages/EditPage/UI/EditPage";
 
 enum AppRoutes {
     AUTH = 'auth',
@@ -22,7 +22,7 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.EDIT]: '/edit',
     [AppRoutes.PROFILE]: '/profile',
     [AppRoutes.SEARCH]: '/search',
-    [AppRoutes.NOT_FOUND]: '*'
+    [AppRoutes.NOT_FOUND]: '*',
 }
 
 // Сами роуты, маршрут для них, компонент который мы должны отрисовывать
@@ -53,5 +53,5 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     [AppRoutes.NOT_FOUND]: {
         path: RoutePath.not_found,
         element: <NotFoundPage/>
-    }
+    },
 }

@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {Profile} from "entities/Profile";
+import {Profile, ProfileSchema} from "../types/profile";
+import {fetchProfileData} from "../services/fetchProfileData";
 import {updateProfileData} from "../services/updateProfileData";
-import {ProfileSchema} from "pages/ProfilePage";
 
 const initialState: ProfileSchema = {
     formData: undefined,
@@ -10,8 +10,8 @@ const initialState: ProfileSchema = {
     data: undefined
 }
 
-export const updateProfileSlice = createSlice({
-    name: 'updateProfile',
+export const profileSlice = createSlice({
+    name: 'profile',
     initialState,
     reducers: {
         updateProfile: (state, action: PayloadAction<Profile>) => {
@@ -26,6 +26,19 @@ export const updateProfileSlice = createSlice({
     },
     extraReducers: builder => {
         builder
+            .addCase(fetchProfileData.pending, state => {
+                state.isLoading = true
+                state.error = undefined
+            })
+            .addCase(fetchProfileData.fulfilled, (state, action: PayloadAction<Profile>) => {
+                state.isLoading = false
+                state.data = action.payload
+                state.formData = action.payload
+            })
+            .addCase(fetchProfileData.rejected, (state, action) => {
+                state.isLoading = false
+                state.error = action.payload
+            })
             .addCase(updateProfileData.pending, state => {
                 state.isLoading = true
                 state.error = undefined
@@ -42,5 +55,5 @@ export const updateProfileSlice = createSlice({
     }
 })
 
-export const { reducer: updateProfileReducer } = updateProfileSlice
-export const { actions: updateProfileActions} = updateProfileSlice
+export const { reducer: profileReducer } = profileSlice
+export const { actions: profileActions} = profileSlice

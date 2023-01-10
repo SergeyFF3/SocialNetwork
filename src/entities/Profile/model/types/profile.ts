@@ -9,3 +9,10 @@ export interface Profile {
     hometown?: string
     comments?: string[]
 }
+
+export interface ProfileSchema {
+    data?: Profile
+    formData?: Profile
+    isLoading?: boolean
+    error?: string
+}

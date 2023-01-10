@@ -1,11 +1,20 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {classNames} from "shared/helpers/classNames/classNames";
 import cls from './EditPage.module.scss'
 import {useSelector} from "react-redux";
-import {EditableProfile} from "features/editableProfile";
 import {useAppDispatch} from "app/provider/storeProvider/store";
-import {fetchProfileData, getProfileError, getProfileFormData, getProfileIsLoading} from "../../ProfilePage";
 import Loader, {SizeLoader} from "widgets/Loader/Loader";
+import {
+    fetchProfileData,
+    updateProfileData,
+    getProfileData,
+    getProfileError,
+    getProfileFormData,
+    getProfileIsLoading,
+} from "entities/Profile";
+import {ProfileEdit} from "entities/ProfileEdit";
+import {profileActions} from 'entities/Profile/model/slices/profileSlice';
+
 
 interface EditPageProps {
     className?: string
@@ -17,9 +26,31 @@ const EditPage = ({className}: EditPageProps) => {
 
     const formData = useSelector(getProfileFormData)
 
+    const data = useSelector(getProfileData)
+
     const isLoading = useSelector(getProfileIsLoading)
 
     const error = useSelector(getProfileError)
+
+    const onChangeAge = useCallback((value?: number) => {
+        dispatch(profileActions.updateProfile({age: value}))
+    }, [dispatch])
+
+    const onChangeCity = useCallback((value?: string) => {
+        dispatch(profileActions.updateProfile({city: value}))
+    }, [dispatch])
+
+    const onChangeHometown = useCallback((value?: string) => {
+        dispatch(profileActions.updateProfile({hometown: value}))
+    }, [dispatch])
+
+    const cancelEditHandler = useCallback(() => {
+        dispatch(profileActions.cancelEdit())
+    }, [dispatch])
+
+    const saveDataClick = useCallback(() => {
+        dispatch(updateProfileData())
+    }, [dispatch])
 
     React.useEffect(() => {
         dispatch(fetchProfileData())
@@ -35,9 +66,15 @@ const EditPage = ({className}: EditPageProps) => {
 
     return (
         <div className={classNames(cls.EditPage, {}, [className])}>
-            <EditableProfile
-                data={formData}
+            <ProfileEdit
+                formData={formData}
+                data={data}
                 error={error}
+                onChangeAge={onChangeAge}
+                onChangeCity={onChangeCity}
+                onChangeHometown={onChangeHometown}
+                cancelEdit={cancelEditHandler}
+                saveData={saveDataClick}
             />
         </div>
     );
