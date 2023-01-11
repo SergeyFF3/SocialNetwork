@@ -1,7 +1,7 @@
-export interface GenderProps {
-    male?: string
-    female?: string
-    notSelected?: string
+export enum GenderProps {
+    notSelected = 'Не выбрано',
+    male = 'Мужчина',
+    female = 'Женщина'
 }
 
 export interface RegistrationSchema {

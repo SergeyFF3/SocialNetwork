@@ -52,16 +52,50 @@
       "surname": "Григорьев",
       "name": "Гоша",
       "id": 7
+    },
+    {
+      "email": "typs@mail.ru",
+      "password": "$2a$10$6n.D3GoyvWzIEccpCj0.d.SXqcFacY6BI40biiGiDnTg5UXH8NyYa",
+      "secondPassword": "1234",
+      "surname": "Ковалев",
+      "name": "Петя",
+      "id": 8
+    },
+    {
+      "email": "misha@mail.ru",
+      "password": "$2a$10$OEOM.iDcqsI8AgKWevQCmO7gPaVDCvDbGMKzXlje7qSgQfAHubQti",
+      "secondPassword": "1234",
+      "surname": "Задорнов",
+      "name": "Михаил",
+      "id": 9
+    },
+    {
+      "email": "slava@mail.ru",
+      "password": "$2a$10$Mqsgm./npzRgjrjmyovpK.KuSiSbenQvTF.UAu9bMp0etwDKcuMpO",
+      "secondPassword": "1234",
+      "surname": "Миронов",
+      "name": "Слава",
+      "gender": "male",
+      "id": 10
+    },
+    {
+      "email": "sveta@mail.ru",
+      "password": "$2a$10$IJcF.Q.J.OfJnNLmVOdGl.WBw44p1yGP8zvS.EQPRh.rXTAwrzGTi",
+      "secondPassword": "1234",
+      "surname": "Тулина",
+      "name": "Светлана",
+      "gender": "female",
+      "id": 11
     }
   ],
   "profile": {
     "id": "2",
     "firstname": "Viktor",
     "lastname": "Matveev",
-    "age": "20",
+    "age": "30",
     "city": "SPB",
     "avatar": "https://fb.ru/media/i/1/8/3/6/5/5/i/183655.jpg",
     "comments": [],
-    "hometown": "TKH"
+    "hometown": "Тихвин"
   }
 }

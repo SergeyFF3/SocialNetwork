@@ -2,9 +2,12 @@ import React from 'react';
 import {classNames} from "shared/helpers/classNames/classNames";
 import cls from './ProfileCard.module.scss'
 import Button, {ThemeButton} from "shared/UI/Button/Button";
-import Text, {AlignText, SizeText, ThemeText} from 'shared/UI/Text/Text'
+import Text, {AlignText, ColorText, SizeText, ThemeText} from 'shared/UI/Text/Text'
 import Modal from "shared/UI/Modal/Modal";
 import {Profile} from "../model/types/profile";
+import Avatar from "shared/UI/Avatar/Avatar";
+import Select from "shared/UI/Select/Select";
+import BgSwitcher, {BgProfileColor} from "../../../widgets/BgSwitcher/BgSwitcher";
 
 interface ProfileProps {
     className?: string
@@ -14,6 +17,8 @@ interface ProfileProps {
     onClose?: () => void
     onOpen?: () => void
     navigateEdit?: () => void
+    bgColor: BgProfileColor
+    onChangeBgColor: (value: BgProfileColor) => void
 }
 
 const ProfileCard = (props: ProfileProps) => {
@@ -25,7 +30,9 @@ const ProfileCard = (props: ProfileProps) => {
         onClose,
         onOpen,
         data,
-        navigateEdit
+        navigateEdit,
+        bgColor,
+        onChangeBgColor
     } = props
 
     if (error) {
@@ -42,14 +49,21 @@ const ProfileCard = (props: ProfileProps) => {
 
     return (
         <div className={classNames(cls.ProfileCard, {}, [className])}>
-            <div className={cls.headerProfile}>
-                <select className={cls.selectHeader}>
-                    <option>Красный</option>
-                </select>
+            <div className={classNames(cls.headerProfile, {}, [cls[bgColor]])}>
+                <div className={cls.selectHeader}>
+                   <BgSwitcher
+                    value={bgColor}
+                    onChange={onChangeBgColor}
+                   />
+                </div>
             </div>
             <div className={cls.headerBottom}>
                 <div className={cls.avatarWrapper}>
-                    <img alt='Аватар пользователя' className={cls.avatar}/>
+                    {data?.avatar && <Avatar
+                      src={data?.avatar}
+                      alt='Аватар пользователя'
+                      size={140}
+                    />}
                 </div>
                 <div className={cls.info}>
                     <div className={cls.username}>
@@ -89,20 +103,38 @@ const ProfileCard = (props: ProfileProps) => {
                         size={SizeText.M}
                         title='Подробная информация'
                     />
-                    <div className={cls.id}>{data?.id}</div>
+                    <div className={cls.id}>@ {data?.id}</div>
                     <div className={cls.detailDesc}>
-                        <Text
-                            className={cls.itemModal}
-                            text={`Возраст: ${data?.age}`}
-                        />
-                        <Text
-                            className={cls.itemModal}
-                            text={`Город: ${data?.city}`}
-                        />
-                        <Text
-                            className={cls.itemModal}
-                            text={`Родной город: ${data?.hometown}`}
-                        />
+                        <span className={cls.itemModal}>
+                           <Text
+                               className={cls.span}
+                               text={`Возраст:`}
+                           />
+                          <Text
+                              color={ColorText.MEDIUMPURPLE}
+                              text={String(data?.age)}
+                          />
+                        </span>
+                        <span className={cls.itemModal}>
+                           <Text
+                               className={cls.span}
+                               text={`Город:`}
+                           />
+                           <Text
+                               color={ColorText.MEDIUMPURPLE}
+                               text={data?.city}
+                           />
+                        </span>
+                        <span className={cls.itemModal}>
+                          <Text
+                              className={cls.span}
+                              text={`Родной город:`}
+                          />
+                         <Text
+                             color={ColorText.MEDIUMPURPLE}
+                             text={data?.hometown}
+                         />
+                        </span>
                     </div>
                 </div>
             </Modal>

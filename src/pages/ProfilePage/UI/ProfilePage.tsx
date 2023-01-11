@@ -5,13 +5,8 @@ import {useAppDispatch} from "app/provider/storeProvider/store";
 import {useSelector} from "react-redux";
 import {useNavigate, useParams} from 'react-router-dom';
 import Loader, {SizeLoader} from "widgets/Loader/Loader";
-import {
-    fetchProfileData,
-    getProfileData,
-    getProfileError,
-    getProfileIsLoading,
-    ProfileCard
-} from "entities/Profile";
+import {fetchProfileData, getProfileData, getProfileError, getProfileIsLoading, ProfileCard} from "entities/Profile";
+import {BgProfileColor} from "../../../widgets/BgSwitcher/BgSwitcher";
 
 interface ProfilePageProps {
     className?: string
@@ -30,6 +25,12 @@ const ProfilePage = ({className}: ProfilePageProps) => {
     const isLoading = useSelector(getProfileIsLoading)
 
     const error = useSelector(getProfileError)
+
+    const [bgColor, setBgColor] = React.useState<BgProfileColor>(BgProfileColor.mediumpurple)
+
+    const onChangeBgColor = useCallback((value: BgProfileColor) => {
+        setBgColor(value)
+    }, [setBgColor])
 
     const [isOpen, setIsOpen] = React.useState(false)
 
@@ -67,6 +68,8 @@ const ProfilePage = ({className}: ProfilePageProps) => {
                     onClose={closeHandler}
                     onOpen={openHandler}
                     navigateEdit={navigateEdit}
+                    bgColor={bgColor}
+                    onChangeBgColor={onChangeBgColor}
                 />
             </div>
         </div>

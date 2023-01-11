@@ -11,7 +11,7 @@ export const fetchProfileData = createAsyncThunk<Profile, void, ThunkConfig<stri
 
             return response.data
         } catch (e) {
-            return rejectWithValue('Ошибка загрузки пользователя')
+            return rejectWithValue('Ошибка загрузки данных пользователя')
         }
     }
 )

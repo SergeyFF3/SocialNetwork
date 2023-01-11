@@ -17,8 +17,22 @@
   }
 }
 
+.green {
+  background: greenyellow;
+}
+.med {
+  background: mediumpurple;
+}
+.orange {
+  background: orange;
+}
+.gray {
+  background: gray;
+}
+
 .selectHeader {
   position: absolute;
+  display: flex;
   right: 20px;
   top: 20px;
   opacity: 0;
@@ -49,14 +63,6 @@
   background: var(--secondary-bg-color);
   z-index: 3;
   margin-right: 20px;
-}
-
-.avatar {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  background: var(--bg-color);
-  z-index: 3;
 }
 
 .info {
@@ -97,15 +103,27 @@
 }
 
 .id {
-  margin: 20px 0;
+  padding: 20px 0;
+  margin-bottom: 15px;
   height: 40px;
   color: var(--secondary-color);
   border-bottom: 1px solid var(--secondary-color);
+  display: flex;
+  align-items: center;
 
 }
 
 .itemModal {
   margin-bottom: 15px;
+  display: flex;
+
+  &:first-child {
+    margin-right: 10px;
+  }
+}
+
+.span {
+  margin-right: 5px;
 }
 
 .age {
@@ -120,17 +138,4 @@
   margin: 0 10px 0 10px;
 }
 
-.btnForm {
-  display: flex;
-  justify-content: space-between;
-}
 
-.btnEdit {
-  width: 100%;
-  margin-left: 5px;
-}
-
-.btnCancel {
-  margin-right: 5px;
-  width: 100%;
-}

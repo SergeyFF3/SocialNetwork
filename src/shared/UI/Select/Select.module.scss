@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  height: inherit;
+  padding: 7px;
+  line-height: 20px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.select {
+  height: inherit;
+  padding: 7px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  text-align: center;
+}
+
+.option {
+  height: 40px;
+}

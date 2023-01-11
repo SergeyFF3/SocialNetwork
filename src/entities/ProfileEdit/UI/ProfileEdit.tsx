@@ -8,7 +8,6 @@ import Button, {ThemeButton} from "../../../shared/UI/Button/Button";
 
 interface ProfileEditProps {
     className?: string
-    data?: Profile
     formData?: Profile
     error?: string
     onChangeAge?: (value?: number) => void
@@ -22,7 +21,6 @@ const ProfileEdit = (props: ProfileEditProps) => {
 
     const {
         className,
-        data,
         formData,
         error,
         onChangeAge,
@@ -46,38 +44,40 @@ const ProfileEdit = (props: ProfileEditProps) => {
 
     return (
         <div className={classNames(cls.ProfileEditCard, {}, [className])}>
-            {data?.city} {data?.age} {data?.hometown}
             <form>
-                <div className={cls.item}>
+                <div className={cls.itemWrapper}>
                     <Text
-                        className={cls.age}
+                        className={cls.itemL}
                         text='Возраст:'
                     />
                     <Input
+                        className={cls.itemR}
                         theme={ThemeInput.OUTLINE}
-                        type='text'
+                        type='number'
                         value={formData?.age}
                         onChange={onChangeAge}
                     />
                 </div>
-                <div className={cls.item}>
+                <div className={cls.itemWrapper}>
                     <Text
-                        className={cls.city}
+                        className={cls.itemL}
                         text='Текущий город:'
                     />
                     <Input
+                        className={cls.itemR}
                         theme={ThemeInput.OUTLINE}
                         type='text'
                         value={formData?.city}
                         onChange={onChangeCity}
                     />
                 </div>
-                <div className={cls.item}>
+                <div className={cls.itemWrapper}>
                     <Text
-                        className={cls.hometown}
+                        className={cls.itemL}
                         text='Родной город:'
                     />
                     <Input
+                        className={cls.itemR}
                         theme={ThemeInput.OUTLINE}
                         type='text'
                         value={formData?.hometown}

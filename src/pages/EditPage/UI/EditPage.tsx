@@ -66,16 +66,17 @@ const EditPage = ({className}: EditPageProps) => {
 
     return (
         <div className={classNames(cls.EditPage, {}, [className])}>
-            <ProfileEdit
-                formData={formData}
-                data={data}
-                error={error}
-                onChangeAge={onChangeAge}
-                onChangeCity={onChangeCity}
-                onChangeHometown={onChangeHometown}
-                cancelEdit={cancelEditHandler}
-                saveData={saveDataClick}
-            />
+            <div className={cls.container}>
+                <ProfileEdit
+                    formData={formData}
+                    error={error}
+                    onChangeAge={onChangeAge}
+                    onChangeCity={onChangeCity}
+                    onChangeHometown={onChangeHometown}
+                    cancelEdit={cancelEditHandler}
+                    saveData={saveDataClick}
+                />
+            </div>
         </div>
     );
 };

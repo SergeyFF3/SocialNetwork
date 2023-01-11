@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {$api} from "shared/api/api";
-import {RegistrationSchema} from "../types/registration";
+import {GenderProps, RegistrationSchema} from "../types/registration";
 
 interface RegisterUserProps {
     name: string
@@ -8,6 +8,7 @@ interface RegisterUserProps {
     email: string
     password: string
     secondPassword: string
+    gender: GenderProps
 }
 
 export const registerUser = createAsyncThunk<RegisterUserProps, RegistrationSchema, {rejectValue: string}> (

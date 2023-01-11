@@ -5,6 +5,13 @@
   padding: 20px 5px;
 }
 
+.loader {
+  height: calc(100vh - var(--navbar-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 
 .logoWrapper {
   display: flex;
@@ -54,13 +61,22 @@
   padding: 2px 10px;
 }
 
-.select {
-  width: 100%;
+.selectWrapper {
   height: 35px;
-  border-radius: 10px;
-  padding: 2px 10px;
+  width: 100%;
+}
+
+.label {
+  width: 50%;
   text-align: center;
-  cursor: pointer;
+  background: var(--inverted-bg-color);
+  color: var(--inverted-primary-color);
+}
+
+.select {
+  width: 50%;
+  background: var(--inverted-bg-color);
+  color: var(--inverted-primary-color);
 }
 
 .btnWrapper {

@@ -10,6 +10,9 @@ import {getRegisterData} from "../../model/selectors/getRegisterData";
 import {registerActions} from 'features/Registration/model/slices/registerSlice';
 import {registerUser} from "../../model/services/registerUser";
 import {useNavigate} from 'react-router-dom';
+import {GenderProps} from "../../model/types/registration";
+import Select from "shared/UI/Select/Select";
+import Loader, {SizeLoader} from "../../../../widgets/Loader/Loader";
 
 interface RegisterFormProps {
     className?: string
@@ -36,6 +39,14 @@ const RegisterForm = (props: RegisterFormProps) => {
         isLoading
     } = useSelector(getRegisterData)
 
+    // const [genderItem, setGenderItem] = React.useState<GenderProps>(GenderProps.notSelected)
+
+    const genderOptions = React.useMemo(() => (
+        Object.entries(GenderProps).map(gender => (
+            {value: gender[0], content: gender[1]}
+        ))
+    ), [])
+
     const onChangeName = useCallback((value: string) => {
         dispatch(registerActions.setName(value))
     }, [dispatch])
@@ -56,21 +67,29 @@ const RegisterForm = (props: RegisterFormProps) => {
         dispatch(registerActions.setSecondPassword(value))
     }, [dispatch])
 
-    const onChangeGender = useCallback((value: string) => {
+    const onChangeGender = useCallback((value: GenderProps) => {
         dispatch(registerActions.setGender(value))
     }, [dispatch])
 
     const onRegister = useCallback(async () => {
-        const result = await dispatch(registerUser({email, password, secondPassword, surname, name}))
+        const result = await dispatch(registerUser({email, password, secondPassword, surname, name, gender}))
 
         if (result.meta.requestStatus === 'fulfilled') {
             navigate('/')
         }
-    }, [dispatch, email, password, secondPassword, surname, name])
+    }, [dispatch, email, password, secondPassword, surname, name, gender])
 
-    const navigateLogin = useCallback( () => {
+    const navigateLogin = useCallback(() => {
         navigate('/')
     }, [navigate])
+
+    if (isLoading) {
+        return (
+            <div className={cls.loader}>
+                <Loader size={SizeLoader.MEDIUM}/>
+            </div>
+        )
+    }
 
     return (
         <div className={classNames(cls.RegisterForm, {}, [className])}>
@@ -110,6 +129,7 @@ const RegisterForm = (props: RegisterFormProps) => {
                 <div className={cls.item}>
                     <Input
                         placeholder='Пароль'
+                        type='password'
                         value={password}
                         onChange={onChangePassword}
                         theme={ThemeInput.OUTLINE}
@@ -130,6 +150,7 @@ const RegisterForm = (props: RegisterFormProps) => {
                 <div className={cls.item}>
                     <Input
                         placeholder='Повторите пароль'
+                        type='password'
                         value={secondPassword}
                         onChange={onChangeSecondPassword}
                         theme={ThemeInput.OUTLINE}
@@ -148,14 +169,17 @@ const RegisterForm = (props: RegisterFormProps) => {
                     />
                 </div>
                 <div className={cls.item}>
-                    <select
+                    <Select
+                        wrapper={cls.selectWrapper}
+                        clsLabel={cls.label}
+                        label='Выберите пол'
+                        clsOptions={cls.option}
                         className={cls.select}
+                        value={gender}
+                        onChange={onChangeGender}
+                        options={genderOptions}
                         tabIndex={6}
-                    >
-                        <option>Не выбрано</option>
-                        <option>Мужчина</option>
-                        <option>Женщина</option>
-                    </select>
+                    />
                 </div>
                 <div className={cls.btnWrapper}>
                     <Button
