@@ -4,9 +4,8 @@ import cls from './ProfileCard.module.scss'
 import Button, {ThemeButton} from "shared/UI/Button/Button";
 import Text, {AlignText, ColorText, SizeText, ThemeText} from 'shared/UI/Text/Text'
 import Modal from "shared/UI/Modal/Modal";
-import {Profile} from "../model/types/profile";
+import {Profile, ValidateProfileError} from "../model/types/profile";
 import Avatar from "shared/UI/Avatar/Avatar";
-import Select from "shared/UI/Select/Select";
 import BgSwitcher, {BgProfileColor} from "../../../widgets/BgSwitcher/BgSwitcher";
 
 interface ProfileProps {

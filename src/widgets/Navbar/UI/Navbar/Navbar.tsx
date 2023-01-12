@@ -27,6 +27,7 @@ const Navbar = (props: NavbarProps) => {
     const onLogout = React.useCallback(() => {
         dispatch(userActions.logout())
         navigate('/')
+
     }, [dispatch, navigate])
 
     if (authData) {

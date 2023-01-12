@@ -6,7 +6,9 @@ import {useSelector} from "react-redux";
 import {useNavigate, useParams} from 'react-router-dom';
 import Loader, {SizeLoader} from "widgets/Loader/Loader";
 import {fetchProfileData, getProfileData, getProfileError, getProfileIsLoading, ProfileCard} from "entities/Profile";
-import {BgProfileColor} from "../../../widgets/BgSwitcher/BgSwitcher";
+import {BgProfileColor} from "widgets/BgSwitcher/BgSwitcher";
+import {getUserAuthData} from "../../../entities/User";
+import Button, {ThemeButton} from "../../../shared/UI/Button/Button";
 
 interface ProfilePageProps {
     className?: string
@@ -26,9 +28,11 @@ const ProfilePage = ({className}: ProfilePageProps) => {
 
     const error = useSelector(getProfileError)
 
+    const isAuth = useSelector(getUserAuthData)
+
     const [bgColor, setBgColor] = React.useState<BgProfileColor>(BgProfileColor.mediumpurple)
 
-    const onChangeBgColor = useCallback((value: BgProfileColor) => {
+    const onChangeBgColor = React.useCallback((value: BgProfileColor) => {
         setBgColor(value)
     }, [setBgColor])
 
@@ -38,11 +42,15 @@ const ProfilePage = ({className}: ProfilePageProps) => {
         setIsOpen(false)
     }, [])
 
-    const openHandler = useCallback(() => {
+    const openHandler = React.useCallback(() => {
         setIsOpen(true)
     }, [])
 
-    const navigateEdit = useCallback(() => {
+    const onAuthorization = React.useCallback(() => {
+        navigate('/')
+    }, [navigate])
+
+    const navigateEdit = React.useCallback(() => {
         navigate('/edit')
     }, [navigate])
 
@@ -57,6 +65,14 @@ const ProfilePage = ({className}: ProfilePageProps) => {
             </div>
         )
     }
+    // console.log(isAuth)
+    // if (!isAuth) {
+    //     return <Button
+    //         theme={ThemeButton.CLEAR}
+    //         onClick={onAuthorization}>
+    //         Авторизируйтесь чтобы пользоваться всеми возможностями Netty
+    //     </Button>
+    // }
 
     return (
         <div className={classNames(cls.ProfilePage, {}, [className])}>

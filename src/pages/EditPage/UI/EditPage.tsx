@@ -6,11 +6,11 @@ import {useAppDispatch} from "app/provider/storeProvider/store";
 import Loader, {SizeLoader} from "widgets/Loader/Loader";
 import {
     fetchProfileData,
-    updateProfileData,
-    getProfileData,
     getProfileError,
     getProfileFormData,
     getProfileIsLoading,
+    getProfileValidateError,
+    updateProfileData,
 } from "entities/Profile";
 import {ProfileEdit} from "entities/ProfileEdit";
 import {profileActions} from 'entities/Profile/model/slices/profileSlice';
@@ -26,11 +26,11 @@ const EditPage = ({className}: EditPageProps) => {
 
     const formData = useSelector(getProfileFormData)
 
-    const data = useSelector(getProfileData)
-
     const isLoading = useSelector(getProfileIsLoading)
 
     const error = useSelector(getProfileError)
+
+    const validateErrors = useSelector(getProfileValidateError)
 
     const onChangeAge = useCallback((value?: number) => {
         dispatch(profileActions.updateProfile({age: value}))
@@ -75,6 +75,8 @@ const EditPage = ({className}: EditPageProps) => {
                     onChangeHometown={onChangeHometown}
                     cancelEdit={cancelEditHandler}
                     saveData={saveDataClick}
+                    validateErrors={validateErrors}
+                    isLoading={isLoading}
                 />
             </div>
         </div>

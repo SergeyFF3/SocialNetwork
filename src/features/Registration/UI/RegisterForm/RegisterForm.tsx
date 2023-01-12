@@ -113,7 +113,7 @@ const RegisterForm = (props: RegisterFormProps) => {
             {error && <Text
               className={cls.error}
               theme={ThemeText.ERROR}
-              text={error}
+              // text={error}
             />}
             <form className={cls.registerGrid}>
                 <div className={cls.item}>

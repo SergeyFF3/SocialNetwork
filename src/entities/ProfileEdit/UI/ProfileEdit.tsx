@@ -1,15 +1,18 @@
 import React from 'react';
 import {classNames} from "shared/helpers/classNames/classNames";
 import cls from './ProfileEdit.module.scss'
-import {Profile} from "../../Profile";
-import Text, {SizeText, ThemeText} from "../../../shared/UI/Text/Text";
-import Input, {ThemeInput} from "../../../shared/UI/Input/Input";
-import Button, {ThemeButton} from "../../../shared/UI/Button/Button";
+import {Profile, ValidateProfileError} from "entities/Profile";
+import Text, {AlignText, SizeText, ThemeText} from "shared/UI/Text/Text";
+import Input, {ThemeInput} from "shared/UI/Input/Input";
+import Button, {ThemeButton} from "shared/UI/Button/Button";
+import Loader, {SizeLoader} from "widgets/Loader/Loader";
 
 interface ProfileEditProps {
     className?: string
     formData?: Profile
     error?: string
+    isLoading?: boolean
+    validateErrors?: ValidateProfileError[]
     onChangeAge?: (value?: number) => void
     onChangeHometown?: (value?: string) => void
     onChangeCity?: (value?: string) => void
@@ -23,6 +26,8 @@ const ProfileEdit = (props: ProfileEditProps) => {
         className,
         formData,
         error,
+        isLoading,
+        validateErrors,
         onChangeAge,
         cancelEdit,
         onChangeCity,
@@ -42,8 +47,24 @@ const ProfileEdit = (props: ProfileEditProps) => {
         )
     }
 
+    if (isLoading) {
+        return (
+            <div className={cls.loader}>
+                <Loader size={SizeLoader.MEDIUM}/>
+            </div>
+        )
+    }
+
     return (
         <div className={classNames(cls.ProfileEditCard, {}, [className])}>
+            {validateErrors?.length && validateErrors.map(err => (
+                <Text
+                    key={err}
+                    theme={ThemeText.ERROR}
+                    text={err}
+                    align={AlignText.CENTER}
+                />
+            ))}
             <form>
                 <div className={cls.itemWrapper}>
                     <Text
@@ -90,7 +111,7 @@ const ProfileEdit = (props: ProfileEditProps) => {
                         className={cls.btnCancel}
                         onClick={cancelEdit}
                     >
-                        Вернуть
+                        Отменить
                     </Button>
                     <Button
                         theme={ThemeButton.GREEN}

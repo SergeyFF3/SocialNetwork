@@ -1,6 +1,8 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {$api} from "shared/api/api";
-import {GenderProps, RegistrationSchema} from "../types/registration";
+import {GenderProps, RegistrationSchema, ValidateRegisterError} from "../types/registration";
+import {ThunkConfig} from "shared/config/interfaces/thunkConfig";
+import {validateRegisterData} from "./validateRegisterData";
 
 interface RegisterUserProps {
     name: string
@@ -11,15 +13,21 @@ interface RegisterUserProps {
     gender: GenderProps
 }
 
-export const registerUser = createAsyncThunk<RegisterUserProps, RegistrationSchema, {rejectValue: string}> (
+export const registerUser = createAsyncThunk<RegisterUserProps, RegistrationSchema, ThunkConfig<ValidateRegisterError[]>> (
     'register/registerUser',
-    async (regData, thunkAPI) => {
+    async (regData, {rejectWithValue}) => {
+
+        const errors = validateRegisterData(regData)
+
+        if (errors.length) {
+            return rejectWithValue(errors)
+        }
         try {
             const res = await $api.post<RegisterUserProps>('/register', regData)
 
             return res.data
         } catch (e) {
-            return thunkAPI.rejectWithValue('Некорректные данные')
+            return rejectWithValue([ValidateRegisterError.SERVER_ERROR])
         }
     }
 )

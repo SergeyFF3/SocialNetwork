@@ -7,3 +7,5 @@ export const getProfileIsLoading = (state: StateSchema) => state?.profile?.isLoa
 export const getProfileFormData = (state: StateSchema) => state?.profile?.formData
 
 export const getProfileError = (state: StateSchema) => state?.profile?.error
+
+export const getProfileValidateError = (state: StateSchema) => state?.profile?.validateErrors

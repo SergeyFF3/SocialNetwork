@@ -11,6 +11,14 @@
   justify-content: center;
 }
 
+.loader {
+  //height: calc(100vh - var(--navbar-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .itemWrapper {
   display: block;
   //margin-bottom: 20px;
@@ -28,7 +36,7 @@
 
 .itemR {
   float: left;
-  width: 300px;
+  width: 350px;
 }
 
 .btnForm {
