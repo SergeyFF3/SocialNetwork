@@ -8,7 +8,6 @@ import Loader, {SizeLoader} from "widgets/Loader/Loader";
 import {fetchProfileData, getProfileData, getProfileError, getProfileIsLoading, ProfileCard} from "entities/Profile";
 import {BgProfileColor} from "widgets/BgSwitcher/BgSwitcher";
 import {getUserAuthData} from "../../../entities/User";
-import Button, {ThemeButton} from "../../../shared/UI/Button/Button";
 
 interface ProfilePageProps {
     className?: string
@@ -24,11 +23,11 @@ const ProfilePage = ({className}: ProfilePageProps) => {
 
     const data = useSelector(getProfileData)
 
+    const isAuth = useSelector(getUserAuthData)
+
     const isLoading = useSelector(getProfileIsLoading)
 
     const error = useSelector(getProfileError)
-
-    const isAuth = useSelector(getUserAuthData)
 
     const [bgColor, setBgColor] = React.useState<BgProfileColor>(BgProfileColor.mediumpurple)
 
@@ -46,10 +45,6 @@ const ProfilePage = ({className}: ProfilePageProps) => {
         setIsOpen(true)
     }, [])
 
-    const onAuthorization = React.useCallback(() => {
-        navigate('/')
-    }, [navigate])
-
     const navigateEdit = React.useCallback(() => {
         navigate('/edit')
     }, [navigate])
@@ -65,20 +60,13 @@ const ProfilePage = ({className}: ProfilePageProps) => {
             </div>
         )
     }
-    // console.log(isAuth)
-    // if (!isAuth) {
-    //     return <Button
-    //         theme={ThemeButton.CLEAR}
-    //         onClick={onAuthorization}>
-    //         Авторизируйтесь чтобы пользоваться всеми возможностями Netty
-    //     </Button>
-    // }
 
     return (
         <div className={classNames(cls.ProfilePage, {}, [className])}>
             <div className={cls.container}>
                 <ProfileCard
                     data={data}
+                    isAuth={isAuth}
                     error={error}
                     isOpen={isOpen}
                     onClose={closeHandler}

@@ -27,8 +27,11 @@ const Navbar = (props: NavbarProps) => {
     const onLogout = React.useCallback(() => {
         dispatch(userActions.logout())
         navigate('/')
-
     }, [dispatch, navigate])
+
+    const loginClick = React.useCallback(() => {
+        navigate('/')
+    }, [navigate])
 
     if (authData) {
         return (
@@ -64,7 +67,16 @@ const Navbar = (props: NavbarProps) => {
         <div className={classNames(cls.NavbarWrapper, {}, [className])}>
             <div className={cls.container}>
                 <div className={cls.logo}>Netty</div>
-                <ThemeSwitcher/>
+                <div className={cls.switcher}>
+                    <ThemeSwitcher/>
+                    <Button
+                        className={cls.btn}
+                        theme={ThemeButton.CLEAR}
+                        onClick={loginClick}
+                    >
+                        Войти
+                    </Button>
+                </div>
             </div>
         </div>
     )

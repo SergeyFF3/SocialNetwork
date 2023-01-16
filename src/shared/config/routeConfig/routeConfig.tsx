@@ -49,12 +49,11 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         // path: `${RoutePath.profile}:id`,
         path: RoutePath.profile,
         element: <ProfilePage/>,
-        authOnly: true
     },
     [AppRoutes.SEARCH]: {
         path: RoutePath.search,
         element: <SearchPage/>,
-        // authOnly: true
+        authOnly: true
     },
 
     [AppRoutes.NOT_FOUND]: {

@@ -4,13 +4,15 @@ import cls from './ProfileCard.module.scss'
 import Button, {ThemeButton} from "shared/UI/Button/Button";
 import Text, {AlignText, ColorText, SizeText, ThemeText} from 'shared/UI/Text/Text'
 import Modal from "shared/UI/Modal/Modal";
-import {Profile, ValidateProfileError} from "../model/types/profile";
+import {Profile} from "../model/types/profile";
 import Avatar from "shared/UI/Avatar/Avatar";
-import BgSwitcher, {BgProfileColor} from "../../../widgets/BgSwitcher/BgSwitcher";
+import BgSwitcher, {BgProfileColor} from "widgets/BgSwitcher/BgSwitcher";
+import {User} from 'entities/User';
 
 interface ProfileProps {
     className?: string
     data: Profile
+    isAuth: User
     error: string
     isOpen?: boolean
     onClose?: () => void
@@ -29,6 +31,7 @@ const ProfileCard = (props: ProfileProps) => {
         onClose,
         onOpen,
         data,
+        isAuth,
         navigateEdit,
         bgColor,
         onChangeBgColor
@@ -49,12 +52,13 @@ const ProfileCard = (props: ProfileProps) => {
     return (
         <div className={classNames(cls.ProfileCard, {}, [className])}>
             <div className={classNames(cls.headerProfile, {}, [cls[bgColor]])}>
-                <div className={cls.selectHeader}>
-                   <BgSwitcher
-                    value={bgColor}
-                    onChange={onChangeBgColor}
-                   />
+                {isAuth ?  <div className={cls.selectHeader}>
+                    <BgSwitcher
+                        value={bgColor}
+                        onChange={onChangeBgColor}
+                    />
                 </div>
+                : null}
             </div>
             <div className={cls.headerBottom}>
                 <div className={cls.avatarWrapper}>
@@ -70,12 +74,13 @@ const ProfileCard = (props: ProfileProps) => {
                             size={SizeText.L}
                             title={`${data?.firstname} ${data?.lastname}`}
                         />
-                        <Button
+                        {isAuth ? <Button
                             theme={ThemeButton.NORMAL}
                             onClick={navigateEdit}
                         >
                             Редактировать профиль
                         </Button>
+                        : null}
                     </div>
                     <div className={cls.description}>
                         <p className={cls.item}>{data?.city}</p>
