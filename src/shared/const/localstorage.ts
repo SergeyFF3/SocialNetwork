@@ -3,5 +3,3 @@
 export const THEME_LOCALSTORAGE_KEY = 'theme'
 
 export const USER_LOCALSTORAGE_KEY = 'user'
-
-export const TEST_LOCALSTORAGE = 'test'

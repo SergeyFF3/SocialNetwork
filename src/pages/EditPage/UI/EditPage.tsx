@@ -32,17 +32,17 @@ const EditPage = ({className}: EditPageProps) => {
 
     const validateErrors = useSelector(getProfileValidateError)
 
-    // const onChangeAge = useCallback((value?: number) => {
-    //     dispatch(profileActions.updateProfile({age: value}))
-    // }, [dispatch])
-    //
-    // const onChangeCity = useCallback((value?: string) => {
-    //     dispatch(profileActions.updateProfile({city: value}))
-    // }, [dispatch])
-    //
-    // const onChangeHometown = useCallback((value?: string) => {
-    //     dispatch(profileActions.updateProfile({hometown: value}))
-    // }, [dispatch])
+    const onChangeAge = useCallback((value?: number) => {
+        dispatch(profileActions.updateProfile({age: value}))
+    }, [dispatch])
+
+    const onChangeCity = useCallback((value?: string) => {
+        dispatch(profileActions.updateProfile({city: value}))
+    }, [dispatch])
+
+    const onChangeHometown = useCallback((value?: string) => {
+        dispatch(profileActions.updateProfile({hometown: value}))
+    }, [dispatch])
 
     const cancelEditHandler = useCallback(() => {
         dispatch(profileActions.cancelEdit())
@@ -70,9 +70,9 @@ const EditPage = ({className}: EditPageProps) => {
                 <ProfileEdit
                     formData={formData}
                     error={error}
-                    // onChangeAge={onChangeAge}
-                    // onChangeCity={onChangeCity}
-                    // onChangeHometown={onChangeHometown}
+                    onChangeAge={onChangeAge}
+                    onChangeCity={onChangeCity}
+                    onChangeHometown={onChangeHometown}
                     cancelEdit={cancelEditHandler}
                     saveData={saveDataClick}
                     validateErrors={validateErrors}

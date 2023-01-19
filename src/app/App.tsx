@@ -5,7 +5,9 @@ import AppRouter from "./provider/AppRouter/AppRouter";
 import {classNames} from "shared/helpers/classNames/classNames";
 import {useTheme} from "shared/helpers/ThemeProvider/useTheme";
 import {useAppDispatch} from "./provider/storeProvider/store";
-import {userActions} from 'entities/User';
+import {getUserAuthData, userActions} from 'entities/User';
+import {USER_LOCALSTORAGE_KEY} from "../shared/const/localstorage";
+import {useSelector} from "react-redux";
 
 function App() {
 

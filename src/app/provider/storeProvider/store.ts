@@ -7,12 +7,15 @@ import {RegistrationSchema} from "features/Registration";
 import {registerReducer} from "features/Registration/model/slices/registerSlice";
 import {ProfileSchema} from "entities/Profile";
 import {profileReducer} from "entities/Profile/model/slices/profileSlice";
+import { searchReducer } from "pages/SearchPage/model/slices/searchSlice";
+import {SearchSchema} from "pages/SearchPage";
 
 export interface StateSchema {
     user: UserSchema
     login: LoginSchema
     register: RegistrationSchema
     profile: ProfileSchema
+    search: SearchSchema
 }
 
 const RootReducer = combineReducers({
@@ -20,6 +23,7 @@ const RootReducer = combineReducers({
     login: loginReducer,
     register: registerReducer,
     profile: profileReducer,
+    search: searchReducer
 })
 
 export const store = configureStore<StateSchema>({
