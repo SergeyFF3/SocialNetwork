@@ -11,7 +11,8 @@ import {User} from 'entities/User';
 
 interface ProfileProps {
     className?: string
-    data: Profile
+    // data: Profile
+    id: string
     isAuth: User
     error: string
     isOpen?: boolean
@@ -30,7 +31,7 @@ const ProfileCard = (props: ProfileProps) => {
         isOpen,
         onClose,
         onOpen,
-        data,
+        // data,
         isAuth,
         navigateEdit,
         bgColor,
@@ -40,11 +41,11 @@ const ProfileCard = (props: ProfileProps) => {
     if (error) {
         return (
             <div className={cls.error}>
-                {error && <Text
+                <Text
                   theme={ThemeText.ERROR}
                   size={SizeText.L}
                   title={error}
-                />}
+                />
             </div>
         )
     }
@@ -62,18 +63,18 @@ const ProfileCard = (props: ProfileProps) => {
             </div>
             <div className={cls.headerBottom}>
                 <div className={cls.avatarWrapper}>
-                    {data?.avatar && <Avatar
-                      src={data?.avatar}
-                      alt='Аватар пользователя'
-                      size={140}
-                    />}
+                    {/*{data?.avatar && <Avatar*/}
+                    {/*  src={data?.avatar}*/}
+                    {/*  alt='Аватар пользователя'*/}
+                    {/*  size={140}*/}
+                    {/*/>}*/}
                 </div>
                 <div className={cls.info}>
                     <div className={cls.username}>
-                        <Text
-                            size={SizeText.L}
-                            title={`${data?.firstname} ${data?.lastname}`}
-                        />
+                        {/*<Text*/}
+                        {/*    size={SizeText.L}*/}
+                        {/*    title={`${data?.firstname} ${data?.lastname}`}*/}
+                        {/*/>*/}
                         {isAuth ? <Button
                             theme={ThemeButton.NORMAL}
                             onClick={navigateEdit}
@@ -83,9 +84,9 @@ const ProfileCard = (props: ProfileProps) => {
                         : null}
                     </div>
                     <div className={cls.description}>
-                        <p className={cls.item}>{data?.city}</p>
-                        <p className={cls.item}>{data?.age}</p>
-                        <p className={cls.item}>{data?.hometown}</p>
+                        {/*<p className={cls.item}>{data?.city}</p>*/}
+                        {/*<p className={cls.item}>{data?.age}</p>*/}
+                        {/*<p className={cls.item}>{data?.hometown}</p>*/}
                         <Button
                             className={cls.item}
                             theme={ThemeButton.CLEAR}
@@ -107,37 +108,37 @@ const ProfileCard = (props: ProfileProps) => {
                         size={SizeText.M}
                         title='Подробная информация'
                     />
-                    <div className={cls.id}>@ {data?.id}</div>
+                    {/*<div className={cls.id}>@ {data?.id}</div>*/}
                     <div className={cls.detailDesc}>
                         <span className={cls.itemModal}>
                            <Text
                                className={cls.span}
                                text={`Возраст:`}
                            />
-                          <Text
-                              color={ColorText.MEDIUMPURPLE}
-                              text={String(data?.age)}
-                          />
+                          {/*<Text*/}
+                          {/*    color={ColorText.MEDIUMPURPLE}*/}
+                          {/*    text={String(data?.age)}*/}
+                          {/*/>*/}
                         </span>
                         <span className={cls.itemModal}>
                            <Text
                                className={cls.span}
                                text={`Город:`}
                            />
-                           <Text
-                               color={ColorText.MEDIUMPURPLE}
-                               text={data?.city}
-                           />
+                           {/*<Text*/}
+                           {/*    color={ColorText.MEDIUMPURPLE}*/}
+                           {/*    text={data?.city}*/}
+                           {/*/>*/}
                         </span>
                         <span className={cls.itemModal}>
                           <Text
                               className={cls.span}
                               text={`Родной город:`}
                           />
-                         <Text
-                             color={ColorText.MEDIUMPURPLE}
-                             text={data?.hometown}
-                         />
+                         {/*<Text*/}
+                         {/*    color={ColorText.MEDIUMPURPLE}*/}
+                         {/*    text={data?.hometown}*/}
+                         {/*/>*/}
                         </span>
                     </div>
                 </div>

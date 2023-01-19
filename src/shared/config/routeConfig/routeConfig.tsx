@@ -14,8 +14,8 @@ export type AppRoutesProps = RouteProps & {
 export enum AppRoutes {
     AUTH = 'auth',
     REGISTER = 'register',
-    EDIT = 'edit',
     PROFILE = 'profile',
+    EDIT = 'edit',
     SEARCH = 'search',
     NOT_FOUND = 'not_found',
 }
@@ -23,8 +23,9 @@ export enum AppRoutes {
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.AUTH]: '/',
     [AppRoutes.REGISTER]: '/register',
+    // [AppRoutes.PROFILE]: '/profile',
+    [AppRoutes.PROFILE]: '/profile/',
     [AppRoutes.EDIT]: '/edit',
-    [AppRoutes.PROFILE]: '/profile',
     [AppRoutes.SEARCH]: '/search',
     [AppRoutes.NOT_FOUND]: '*',
 }
@@ -45,15 +46,18 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         element: <EditPage/>,
         authOnly: true
     },
+    // [AppRoutes.PROFILE]: {
+    //     path: RoutePath.profile,
+    //     element: <ProfilePage/>,
+    // },
     [AppRoutes.PROFILE]: {
-        // path: `${RoutePath.profile}:id`,
-        path: RoutePath.profile,
+        path: `${RoutePath.profile}:id`,
+        // path: RoutePath.profile,
         element: <ProfilePage/>,
     },
     [AppRoutes.SEARCH]: {
         path: RoutePath.search,
         element: <SearchPage/>,
-        authOnly: true
     },
 
     [AppRoutes.NOT_FOUND]: {

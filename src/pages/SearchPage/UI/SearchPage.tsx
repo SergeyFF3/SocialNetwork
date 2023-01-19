@@ -6,7 +6,8 @@ import {useSelector} from "react-redux";
 import {getSearchData, getSearchError, getSearchIsLoading} from "../model/selectors/getSearchData";
 import Loading from "shared/UI/Loading/Loading";
 import {fetchUsers} from "../model/services/fetchUsers";
-import SearchUsersList from "../../../entities/SearchUsers/UI/SearchUsersList/SearchUsersList";
+import {SearchUsersList} from "entities/SearchUsers";
+import Text, {SizeText, ThemeText} from "shared/UI/Text/Text";
 
 interface SearchPageProps {
     className?: string
@@ -34,10 +35,25 @@ const SearchPage = (props: SearchPageProps) => {
         return <Loading/>
     }
 
+    if (error) {
+        return (
+            <div className={cls.error}>
+                <Text
+                    theme={ThemeText.ERROR}
+                    size={SizeText.L}
+                    title={error}
+                />
+            </div>
+        )
+    }
+
     return (
         <div className={classNames(cls.SearchPage, {}, [className])}>
-            {error && <p>{error}</p>}
-            <SearchUsersList SearchList={data} />
+            <div className={cls.container}>
+                <SearchUsersList
+                    SearchList={data}
+                />
+            </div>
         </div>
     );
 };

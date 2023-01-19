@@ -2,7 +2,7 @@ import React from 'react';
 import {classNames} from "shared/helpers/classNames/classNames";
 import cls from './SearchUsersList.module.scss'
 import SearchUserCard from "../SearchUserCard/SearchUserCard";
-import { Profile } from 'entities/Profile';
+import {Profile} from 'entities/Profile';
 
 interface SearchUsersListProps {
     className?: string
@@ -18,7 +18,7 @@ const SearchUsersList = (props: SearchUsersListProps) => {
 
     return (
         <div className={classNames(cls.SearchUsersList, {}, [className])}>
-            {SearchList.map(item => {
+            {SearchList?.map(item => {
                 return (
                     <SearchUserCard
                         key={item.id}

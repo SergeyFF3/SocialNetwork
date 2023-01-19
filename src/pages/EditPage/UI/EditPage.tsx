@@ -53,8 +53,8 @@ const EditPage = ({className}: EditPageProps) => {
     }, [dispatch])
 
     React.useEffect(() => {
-        dispatch(fetchProfileData())
-    }, [dispatch])
+        dispatch(fetchProfileData(formData?.id))
+    }, [dispatch, formData.id])
 
     if (isLoading) {
         return (

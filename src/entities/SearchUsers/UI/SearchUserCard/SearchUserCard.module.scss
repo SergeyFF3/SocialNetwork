@@ -1,0 +1,53 @@
+.SearchUserCard {
+  position: relative;
+  width: 200px;
+  height: 250px;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--secondary-bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.AvatarWrapper {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+}
+
+.avatar {
+  position: absolute;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.span {
+  position: absolute;
+  z-index: 1;
+  top: -7px;
+  left: -8px;
+  background: var(--bg-color);
+  border-radius: 50%;
+  width: 155px;
+  height: 155px;
+}
+
+.botContent {
+  background: var(--bg-color);
+  border-radius: 8px;
+  padding: 10px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.title {
+  font-size: 20px;
+  height: 30px;
+}
+
+.btn {
+  width: 100%;
+}

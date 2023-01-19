@@ -77,7 +77,7 @@ const RegisterForm = (props: RegisterFormProps) => {
         if (result.meta.requestStatus === 'fulfilled') {
             navigate('/')
         }
-    }, [dispatch, email, password, secondPassword, surname, name, gender])
+    }, [dispatch, navigate, email, password, secondPassword, surname, name, gender])
 
     const navigateLogin = useCallback(() => {
         navigate('/')

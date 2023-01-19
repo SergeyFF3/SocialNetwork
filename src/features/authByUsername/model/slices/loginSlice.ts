@@ -3,7 +3,6 @@ import {LoginSchema} from "../types/LoginSchema";
 import {loginByUsername} from "../services/loginByUsername";
 
 const initialState: LoginSchema = {
-    isLoading: false,
     email: '',
     password: '',
 }

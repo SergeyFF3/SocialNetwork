@@ -88,7 +88,8 @@
       "id": 11
     }
   ],
-  "profile": [{
+  "profile": [
+    {
     "id": "2",
     "firstname": "Viktor",
     "lastname": "Matveev",
@@ -206,7 +207,7 @@
       "avatar": "https://femmie.ru/wp-content/uploads/2022/01/pexels-andrea-piacquadio-733872.jpg",
       "comments": []
     },
-    {A
+    {
       "id": "14",
       "firstname": "Tanya",
       "lastname": "Matveeva",

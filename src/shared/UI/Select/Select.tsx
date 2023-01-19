@@ -42,7 +42,7 @@ const Select = (props: SelectProps) => {
         >
             {opt.content}
         </option>
-    )), [options])
+    )), [options, clsOptions])
 
     const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         onChange?.(e.target.value)

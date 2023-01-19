@@ -124,3 +124,33 @@
 //     "avatar": "https://ayurvedamarket.ru/upload/blog_record/source/60755.jpg",
 //     "comments": []
 // }
+
+// "comments": [
+//     {
+//         "id": "1",
+//         "text": 'sgdhdhdhdd',
+//         "profileId": "1",
+//         "userId": "1"
+//     },
+//     {
+//         "id": "2",
+//         "text": 'sgdhgghfhfhdhdhdd',
+//         "profileId": "2",
+//         "userId": "2"
+//     }, {
+//         "id": "3",
+//         "text": 'sgdhdhdhdy5757d',
+//         "profileId": "3",
+//         "userId": "3"
+//     }, {
+//         "id": "4",
+//         "text": 'cr343sgdhdhdhdd',
+//         "profileId": "4",
+//         "userId": "4"
+//     }, {
+//         "id": "5",
+//         "text": 'sgdhdhdhdduu4gg4',
+//         "profileId": "5",
+//         "userId": "5"
+//     },
+// ]

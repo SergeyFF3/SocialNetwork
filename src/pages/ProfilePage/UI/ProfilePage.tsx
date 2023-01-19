@@ -7,7 +7,7 @@ import {useNavigate, useParams} from 'react-router-dom';
 import Loader, {SizeLoader} from "widgets/Loader/Loader";
 import {fetchProfileData, getProfileData, getProfileError, getProfileIsLoading, ProfileCard} from "entities/Profile";
 import {BgProfileColor} from "widgets/BgSwitcher/BgSwitcher";
-import {getUserAuthData} from "../../../entities/User";
+import {getUserAuthData} from "entities/User";
 
 interface ProfilePageProps {
     className?: string
@@ -50,7 +50,7 @@ const ProfilePage = ({className}: ProfilePageProps) => {
     }, [navigate])
 
     React.useEffect(() => {
-        dispatch(fetchProfileData())
+        dispatch(fetchProfileData('3'))
     }, [dispatch])
 
     if (isLoading) {
@@ -65,7 +65,8 @@ const ProfilePage = ({className}: ProfilePageProps) => {
         <div className={classNames(cls.ProfilePage, {}, [className])}>
             <div className={cls.container}>
                 <ProfileCard
-                    data={data}
+                    // data={data}
+                    id={id}
                     isAuth={isAuth}
                     error={error}
                     isOpen={isOpen}
