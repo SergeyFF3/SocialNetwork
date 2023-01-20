@@ -5,7 +5,7 @@ import {ThunkConfig} from "shared/config/interfaces/thunkConfig";
 import {getProfileFormData} from "../selectors/getProfileData";
 import {validateProfileData} from "./validateProfileData";
 
-export const updateProfileData = createAsyncThunk<Profile,void, ThunkConfig<ValidateProfileError[]>> (
+export const updateProfileData = createAsyncThunk<Profile,string, ThunkConfig<ValidateProfileError[]>> (
     'profile/updateProfileData',
     async (_, {rejectWithValue, getState}) => {
 
@@ -18,7 +18,7 @@ export const updateProfileData = createAsyncThunk<Profile,void, ThunkConfig<Vali
         }
 
         try {
-            const res = await $api.put<Profile>('/profile', formData)
+            const res = await $api.put<Profile>(`/profile/${formData?.id}`, formData)
 
             return res.data
         } catch (e) {

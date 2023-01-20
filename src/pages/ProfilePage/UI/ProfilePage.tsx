@@ -16,14 +16,14 @@ interface ProfilePageProps {
 const ProfilePage = ({className}: ProfilePageProps) => {
 
     const {id} = useParams<{ id: string }>()
-
+    console.log(id)
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
 
-    const data = useSelector(getProfileData)
-
     const isAuth = useSelector(getUserAuthData)
+
+    const data = useSelector(getProfileData)
 
     const isLoading = useSelector(getProfileIsLoading)
 
@@ -50,8 +50,10 @@ const ProfilePage = ({className}: ProfilePageProps) => {
     }, [navigate])
 
     React.useEffect(() => {
-        dispatch(fetchProfileData('3'))
-    }, [dispatch])
+        if (id) {
+            dispatch(fetchProfileData(id))
+        }
+    }, [dispatch, id])
 
     if (isLoading) {
         return (
@@ -65,8 +67,7 @@ const ProfilePage = ({className}: ProfilePageProps) => {
         <div className={classNames(cls.ProfilePage, {}, [className])}>
             <div className={cls.container}>
                 <ProfileCard
-                    // data={data}
-                    id={id}
+                    data={data}
                     isAuth={isAuth}
                     error={error}
                     isOpen={isOpen}

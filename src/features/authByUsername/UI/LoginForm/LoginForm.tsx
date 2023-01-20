@@ -14,7 +14,8 @@ import {
 } from "../../model/selectors/getLoginState";
 import {loginByUsername} from "../../model/services/loginByUsername";
 import Text, {SizeText, ThemeText} from "shared/UI/Text/Text";
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
+import {USER_LOCALSTORAGE_KEY} from "../../../../shared/const/localstorage";
 
 
 interface LoginFormProps {
@@ -24,6 +25,8 @@ interface LoginFormProps {
 const LoginForm = (props: LoginFormProps) => {
 
     const {className} = props
+
+    const {id} = useParams<{id: string}>()
 
     const dispatch = useAppDispatch()
 
@@ -50,9 +53,10 @@ const LoginForm = (props: LoginFormProps) => {
         const result = await dispatch(loginByUsername({password, email}))
 
         if (result.meta.requestStatus === 'fulfilled') {
-            navigate('/profile')
+            console.log(localStorage.getItem(USER_LOCALSTORAGE_KEY))
+            navigate(`/profile/${id}`)
         }
-    }, [dispatch, password, email, navigate])
+    }, [dispatch, password, email, navigate, id])
 
     const onRegistration = React.useCallback(() => {
         navigate('/register')

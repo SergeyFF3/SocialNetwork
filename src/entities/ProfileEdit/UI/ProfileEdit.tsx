@@ -35,7 +35,13 @@ const ProfileEdit = (props: ProfileEditProps) => {
         saveData
     } = props
 
-    if (error) {
+    if (isLoading) {
+        return (
+            <div className={cls.loader}>
+                <Loader size={SizeLoader.MEDIUM}/>
+            </div>
+        )
+    } else if (error) {
         return (
             <div className={cls.error}>
                 {error && <Text
@@ -45,17 +51,7 @@ const ProfileEdit = (props: ProfileEditProps) => {
                 />}
             </div>
         )
-    }
-
-    if (isLoading) {
-        return (
-            <div className={cls.loader}>
-                <Loader size={SizeLoader.MEDIUM}/>
-            </div>
-        )
-    }
-
-    return (
+    } else return (
         <div className={classNames(cls.ProfileEditCard, {}, [className])}>
             {validateErrors?.length && validateErrors.map(err => (
                 <Text

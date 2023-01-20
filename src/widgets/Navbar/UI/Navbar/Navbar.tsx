@@ -7,8 +7,8 @@ import {useSelector} from "react-redux";
 import {getUserAuthData, userActions} from "entities/User";
 import Button, {ThemeButton} from "shared/UI/Button/Button";
 import {useNavigate} from 'react-router-dom';
-import {NavbarItemList} from "../../model/items";
 import NavbarItem from "../NavbarItem/NavbarItem";
+import {getNavbarItems} from "../../model/selectors/getNavbarItems";
 
 interface NavbarProps {
     className?: string
@@ -21,6 +21,8 @@ const Navbar = (props: NavbarProps) => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
+
+    const navbarItemsList = useSelector(getNavbarItems)
 
     const authData = useSelector(getUserAuthData)
 
@@ -41,7 +43,7 @@ const Navbar = (props: NavbarProps) => {
                         Netty
                     </div>
                     <menu>
-                        {NavbarItemList.map(item => (
+                        {navbarItemsList.map(item => (
                             <NavbarItem
                                 key={item.path}
                                 item={item}

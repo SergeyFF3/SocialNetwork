@@ -14,6 +14,7 @@ import {
 } from "entities/Profile";
 import {ProfileEdit} from "entities/ProfileEdit";
 import {profileActions} from 'entities/Profile/model/slices/profileSlice';
+import {useParams} from "react-router-dom";
 
 
 interface EditPageProps {
@@ -21,6 +22,8 @@ interface EditPageProps {
 }
 
 const EditPage = ({className}: EditPageProps) => {
+
+    const {id} = useParams<{ id: string }>()
 
     const dispatch = useAppDispatch()
 
@@ -49,12 +52,14 @@ const EditPage = ({className}: EditPageProps) => {
     }, [dispatch])
 
     const saveDataClick = useCallback(() => {
-        dispatch(updateProfileData())
-    }, [dispatch])
+        dispatch(updateProfileData(id))
+    }, [dispatch, id])
 
     React.useEffect(() => {
-        dispatch(fetchProfileData(formData?.id))
-    }, [dispatch, formData.id])
+        if (id) {
+            dispatch(fetchProfileData(id))
+        }
+    }, [dispatch, id])
 
     if (isLoading) {
         return (

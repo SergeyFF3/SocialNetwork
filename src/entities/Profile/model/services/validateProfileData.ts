@@ -6,10 +6,8 @@ export const validateProfileData = (profile?: Profile) => {
 
     const errors: ValidateProfileError[] = []
 
-    if (!age || age > 150 || age < 0 || age === 0) {
+    if (!age || Number(age) > 150 || Number(age) < 0 || Number(age) === 0) {
         errors.push(ValidateProfileError.INCORRECT_AGE)
-    }if (age === 0) {
-        errors.push(ValidateProfileError.INCORRECT_AGE_1)
     }
 
     if (!firstname) {

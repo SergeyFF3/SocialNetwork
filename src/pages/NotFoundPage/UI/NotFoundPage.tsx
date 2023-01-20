@@ -2,9 +2,9 @@ import React from 'react';
 import {classNames} from "shared/helpers/classNames/classNames";
 import cls from './NotFoundPage.module.scss'
 import {useSelector} from "react-redux";
-import {getUserAuthData} from "../../../entities/User";
-import Button, {ThemeButton} from "../../../shared/UI/Button/Button";
-import {useNavigate} from 'react-router-dom';
+import {getUserAuthData} from "entities/User";
+import Button, {ThemeButton} from "shared/UI/Button/Button";
+import {useNavigate, useParams} from 'react-router-dom';
 
 interface NotFoundPageProps {
     className?: string
@@ -16,13 +16,15 @@ const NotFoundPage = (props: NotFoundPageProps) => {
         className
     } = props
 
+    const {id} = useParams<{ id: string }>()
+
     const navigate = useNavigate()
 
     const isAuth = useSelector(getUserAuthData)
 
     const onProfile = React.useCallback(() => {
-        navigate('/profile')
-    }, [navigate])
+        navigate(`/profile/${id}`)
+    }, [navigate, id])
 
     const onAuth = React.useCallback(() => {
         navigate('/')
