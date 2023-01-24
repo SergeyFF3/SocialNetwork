@@ -6,16 +6,11 @@ import Button, {ThemeButton} from "shared/UI/Button/Button";
 import {useAppDispatch} from "app/provider/storeProvider/store";
 import {loginActions} from '../../model/slices/loginSlice';
 import {useSelector} from "react-redux";
-import {
-    getLoginEmail,
-    getLoginError,
-    getLoginIsLoading,
-    getLoginPassword
-} from "../../model/selectors/getLoginState";
+import {getLoginEmail, getLoginError, getLoginIsLoading, getLoginPassword} from "../../model/selectors/getLoginState";
 import {loginByUsername} from "../../model/services/loginByUsername";
 import Text, {SizeText, ThemeText} from "shared/UI/Text/Text";
 import {useNavigate, useParams} from 'react-router-dom';
-import {USER_LOCALSTORAGE_KEY} from "../../../../shared/const/localstorage";
+import {RoutePath} from "shared/config/routeConfig/routeConfig";
 
 
 interface LoginFormProps {
@@ -53,8 +48,8 @@ const LoginForm = (props: LoginFormProps) => {
         const result = await dispatch(loginByUsername({password, email}))
 
         if (result.meta.requestStatus === 'fulfilled') {
-            console.log(localStorage.getItem(USER_LOCALSTORAGE_KEY))
-            navigate(`/profile/${id}`)
+
+            navigate(`${RoutePath.profile}${id}`)
         }
     }, [dispatch, password, email, navigate, id])
 

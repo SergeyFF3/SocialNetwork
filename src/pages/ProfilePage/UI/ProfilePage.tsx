@@ -1,13 +1,13 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {classNames} from "shared/helpers/classNames/classNames";
 import cls from './ProfilePage.module.scss'
 import {useAppDispatch} from "app/provider/storeProvider/store";
 import {useSelector} from "react-redux";
 import {useNavigate, useParams} from 'react-router-dom';
-import Loader, {SizeLoader} from "widgets/Loader/Loader";
 import {fetchProfileData, getProfileData, getProfileError, getProfileIsLoading, ProfileCard} from "entities/Profile";
 import {BgProfileColor} from "widgets/BgSwitcher/BgSwitcher";
 import {getUserAuthData} from "entities/User";
+import Loading from "shared/UI/Loading/Loading";
 
 interface ProfilePageProps {
     className?: string
@@ -37,7 +37,7 @@ const ProfilePage = ({className}: ProfilePageProps) => {
 
     const [isOpen, setIsOpen] = React.useState(false)
 
-    const closeHandler = useCallback(() => {
+    const closeHandler = React.useCallback(() => {
         setIsOpen(false)
     }, [])
 
@@ -56,11 +56,7 @@ const ProfilePage = ({className}: ProfilePageProps) => {
     }, [dispatch, id])
 
     if (isLoading) {
-        return (
-            <div className={cls.loader}>
-                <Loader size={SizeLoader.MEDIUM}/>
-            </div>
-        )
+        return <Loading/>
     }
 
     return (

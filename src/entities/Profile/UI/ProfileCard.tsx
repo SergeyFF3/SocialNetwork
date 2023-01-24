@@ -8,6 +8,8 @@ import {Profile} from "../model/types/profile";
 import Avatar from "shared/UI/Avatar/Avatar";
 import BgSwitcher, {BgProfileColor} from "widgets/BgSwitcher/BgSwitcher";
 import {User} from 'entities/User';
+import AppLink from "shared/UI/AppLink/AppLink";
+import {RoutePath} from "shared/config/routeConfig/routeConfig";
 
 interface ProfileProps {
     className?: string
@@ -41,33 +43,33 @@ const ProfileCard = (props: ProfileProps) => {
         return (
             <div className={cls.error}>
                 <Text
-                  theme={ThemeText.ERROR}
-                  size={SizeText.L}
-                  title={error}
+                    theme={ThemeText.ERROR}
+                    size={SizeText.L}
+                    title={error}
                 />
             </div>
         )
     }
-
+    console.log(data?.id)
     return (
         <div className={classNames(cls.ProfileCard, {}, [className])}>
             <div className={classNames(cls.headerProfile, {}, [cls[bgColor]])}>
-                {isAuth ?  <div className={cls.selectHeader}>
-                    <BgSwitcher
-                        value={bgColor}
-                        onChange={onChangeBgColor}
-                    />
-                </div>
-                : null}
+                {isAuth ? <div className={cls.selectHeader}>
+                        <BgSwitcher
+                            value={bgColor}
+                            onChange={onChangeBgColor}
+                        />
+                    </div>
+                    : null}
             </div>
             <div className={cls.headerBottom}>
-                <div className={cls.avatarWrapper}>
-                    {data?.avatar && <Avatar
-                      src={data?.avatar}
-                      alt='Аватар пользователя'
-                      size={140}
-                    />}
-                </div>
+                    <div className={cls.avatarWrapper}>
+                        {data?.avatar && <Avatar
+                          src={data?.avatar}
+                          alt='Аватар пользователя'
+                          size={140}
+                        />}
+                    </div>
                 <div className={cls.info}>
                     <div className={cls.username}>
                         <Text
@@ -75,12 +77,12 @@ const ProfileCard = (props: ProfileProps) => {
                             title={`${data?.firstname} ${data?.lastname}`}
                         />
                         {isAuth ? <Button
-                            theme={ThemeButton.NORMAL}
-                            onClick={navigateEdit}
-                        >
-                            Редактировать профиль
-                        </Button>
-                        : null}
+                                theme={ThemeButton.NORMAL}
+                                onClick={navigateEdit}
+                            >
+                                Редактировать профиль
+                            </Button>
+                            : null}
                     </div>
                     <div className={cls.description}>
                         <p className={cls.item}>{data?.city}</p>

@@ -15,47 +15,46 @@ interface SearchPageProps {
 
 const SearchPage = (props: SearchPageProps) => {
 
-    const {
-        className
-    } = props
+        const {
+            className
+        } = props
 
-    const dispatch = useAppDispatch()
+        const dispatch = useAppDispatch()
 
-    const data = useSelector(getSearchData)
+        const data = useSelector(getSearchData)
 
-    const isLoading = useSelector(getSearchIsLoading)
+        const isLoading = useSelector(getSearchIsLoading)
 
-    const error = useSelector(getSearchError)
+        const error = useSelector(getSearchError)
 
-    React.useEffect(() => {
-        dispatch(fetchUsers())
-    }, [dispatch])
+        React.useEffect(() => {
+            dispatch(fetchUsers())
+        }, [dispatch])
 
-    if (isLoading) {
-        return <Loading/>
+        if (isLoading) {
+            return <Loading/>
+        } else if (error) {
+            return (
+                <div className={cls.error}>
+                    <Text
+                        theme={ThemeText.ERROR}
+                        size={SizeText.L}
+                        title={error}
+                    />
+                </div>
+            )
+        } else {
+            return (
+                <div className={classNames(cls.SearchPage, {}, [className])}>
+                    <div className={cls.container}>
+                        <SearchUsersList
+                            SearchList={data}
+                        />
+                    </div>
+                </div>
+            )
+        }
     }
-
-    if (error) {
-        return (
-            <div className={cls.error}>
-                <Text
-                    theme={ThemeText.ERROR}
-                    size={SizeText.L}
-                    title={error}
-                />
-            </div>
-        )
-    }
-
-    return (
-        <div className={classNames(cls.SearchPage, {}, [className])}>
-            <div className={cls.container}>
-                <SearchUsersList
-                    SearchList={data}
-                />
-            </div>
-        </div>
-    );
-};
+;
 
 export default React.memo(SearchPage);

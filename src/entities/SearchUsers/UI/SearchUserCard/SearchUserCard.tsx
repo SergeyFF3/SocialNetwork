@@ -5,6 +5,8 @@ import {Profile} from 'entities/Profile';
 import Avatar from "shared/UI/Avatar/Avatar";
 import Text, {AlignText} from "shared/UI/Text/Text";
 import Button, {ThemeButton} from "shared/UI/Button/Button";
+import AppLink from "../../../../shared/UI/AppLink/AppLink";
+import {RoutePath} from "../../../../shared/config/routeConfig/routeConfig";
 
 interface SearchUserCardProps {
     className?: string
@@ -19,18 +21,19 @@ const SearchUserCard = (props: SearchUserCardProps) => {
     } = props
 
 
-
     return (
         <div className={classNames(cls.SearchUserCard, {}, [className])}>
-            <div className={cls.AvatarWrapper}>
-                <span className={cls.span}></span>
-                <Avatar
-                    className={cls.avatar}
-                    size={140}
-                    alt='Аватар пользователя'
-                    src={item?.avatar}
-                />
-            </div>
+            <AppLink to={`${RoutePath.profile}${item?.id}`}>
+                <div className={cls.AvatarWrapper}>
+                    <span className={cls.span}></span>
+                    <Avatar
+                        className={cls.avatar}
+                        size={140}
+                        alt='Аватар пользователя'
+                        src={item?.avatar}
+                    />
+                </div>
+            </AppLink>
             <div className={cls.botContent}>
                 <div className={cls.name}>
                     <Text
