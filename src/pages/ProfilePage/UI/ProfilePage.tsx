@@ -8,6 +8,8 @@ import {fetchProfileData, getProfileData, getProfileError, getProfileIsLoading, 
 import {BgProfileColor} from "widgets/BgSwitcher/BgSwitcher";
 import {getUserAuthData} from "entities/User";
 import Loading from "shared/UI/Loading/Loading";
+import {CommentList, fetchComments, getCommentData} from "../../../entities/Comment";
+import SendComment from "../../../features/SendComment/UI/SendComment/SendComment";
 
 interface ProfilePageProps {
     className?: string
@@ -28,6 +30,8 @@ const ProfilePage = ({className}: ProfilePageProps) => {
     const isLoading = useSelector(getProfileIsLoading)
 
     const error = useSelector(getProfileError)
+
+    const comments = useSelector(getCommentData)
 
     const [bgColor, setBgColor] = React.useState<BgProfileColor>(BgProfileColor.mediumpurple)
 
@@ -55,6 +59,10 @@ const ProfilePage = ({className}: ProfilePageProps) => {
         }
     }, [dispatch, id])
 
+    React.useEffect(() => {
+        dispatch(fetchComments())
+    }, [dispatch])
+
     if (isLoading) {
         return <Loading/>
     }
@@ -73,6 +81,8 @@ const ProfilePage = ({className}: ProfilePageProps) => {
                     bgColor={bgColor}
                     onChangeBgColor={onChangeBgColor}
                 />
+                <SendComment/>
+                {/*<CommentList comments={comments}/>*/}
             </div>
         </div>
     );

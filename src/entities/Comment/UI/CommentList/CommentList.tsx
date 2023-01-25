@@ -1,9 +1,9 @@
 import React from 'react';
 import {classNames} from "shared/helpers/classNames/classNames";
 import cls from './CommentList.module.scss'
-import {Comment} from "../../model/types/comment";
 import Text from "shared/UI/Text/Text";
 import CommentItem from '../CommentItem/CommentItem';
+import {Comment} from "../../model/types/comment";
 
 interface CommentListProps {
     className?: string
@@ -25,7 +25,7 @@ const CommentList = (props: CommentListProps) => {
             {comments?.length
             ? comments.map(comment => (
                 <CommentItem
-                    key={comment.id}
+                    key={comment?.id}
                     isLoading={isLoading}
                     comment={comment}
                 />

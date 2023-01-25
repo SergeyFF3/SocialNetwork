@@ -9,6 +9,10 @@ import {ProfileSchema} from "entities/Profile";
 import {profileReducer} from "entities/Profile/model/slices/profileSlice";
 import { searchReducer } from "pages/SearchPage/model/slices/searchSlice";
 import {SearchSchema} from "pages/SearchPage";
+import {SendCommentSchema} from "features/SendComment";
+import {sendCommentReducer} from "features/SendComment/model/slices/sendCommentSlice";
+import { commentReducer } from "entities/Comment/model/slices/commentSlice";
+import {CommentSchema} from "entities/Comment";
 
 export interface StateSchema {
     user: UserSchema
@@ -16,6 +20,8 @@ export interface StateSchema {
     register: RegistrationSchema
     profile: ProfileSchema
     search: SearchSchema
+    comment: CommentSchema
+    sendComment: SendCommentSchema
 }
 
 const RootReducer = combineReducers({
@@ -23,7 +29,9 @@ const RootReducer = combineReducers({
     login: loginReducer,
     register: registerReducer,
     profile: profileReducer,
-    search: searchReducer
+    search: searchReducer,
+    comment: commentReducer,
+    sendComment: sendCommentReducer
 })
 
 export const store = configureStore<StateSchema>({
