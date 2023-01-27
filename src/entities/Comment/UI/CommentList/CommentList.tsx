@@ -22,16 +22,16 @@ const CommentList = (props: CommentListProps) => {
 
     return (
         <div className={classNames(cls.CommentList, {}, [className])}>
-            {comments?.length
-            ? comments.map(comment => (
-                <CommentItem
-                    key={comment?.id}
-                    isLoading={isLoading}
-                    comment={comment}
-                />
-                    )
-                )
-            : <Text text='Комментарии отсутствуют'/>}
+            {/*{comments?.length*/}
+            {/*? comments.map(comment => (*/}
+            {/*    <CommentItem*/}
+            {/*        key={comment?.id}*/}
+            {/*        isLoading={isLoading}*/}
+            {/*        comment={comment}*/}
+            {/*    />*/}
+            {/*        )*/}
+            {/*    )*/}
+            {/*: <Text text='Комментарии отсутствуют'/>}*/}
         </div>
     );
 };

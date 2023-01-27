@@ -1,15 +1,19 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {sendCommentThunk} from "../services/sendCommentThunk";
 import {SendCommentSchema} from "../types/types";
 
 const initialState: SendCommentSchema = {
-
+    text: ''
 }
 
 export const sendCommentSlice = createSlice({
     name: 'sendComment',
     initialState,
-    reducers: {},
+    reducers: {
+        setText: (state, action: PayloadAction<string>) => {
+            state.text = action.payload
+        }
+    },
     extraReducers: builder => {
         builder
             .addCase(sendCommentThunk.pending, state => {
@@ -26,5 +30,5 @@ export const sendCommentSlice = createSlice({
     }
 })
 
-export const { reducer: sendCommentReducer } = sendCommentSlice
-export const { actions: sendCommentActions} = sendCommentSlice
+export const {reducer: sendCommentReducer} = sendCommentSlice
+export const {actions: sendCommentActions} = sendCommentSlice

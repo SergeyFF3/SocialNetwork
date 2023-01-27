@@ -7,7 +7,7 @@ export interface Comment {
 }
 
 export interface CommentSchema {
-    data?: Comment
+    data?: Comment[]
     isLoading?: boolean
     error?: string
 }

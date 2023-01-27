@@ -3,21 +3,21 @@ import {Comment, CommentSchema} from "../types/comment";
 import {fetchComments} from "../services/fetchComments";
 
 
-const initialState: CommentSchema = {
-
-}
+const initialState: CommentSchema = {}
 
 export const commentSlice = createSlice({
     name: 'comment',
     initialState,
-    reducers: {},
+    reducers: {
+
+    },
     extraReducers: builder => {
         builder
             .addCase(fetchComments.pending, state => {
                 state.isLoading = true
                 state.error = undefined
             })
-            .addCase(fetchComments.fulfilled, (state, action: PayloadAction<Comment>) => {
+            .addCase(fetchComments.fulfilled, (state, action: PayloadAction<Comment[]>) => {
                 state.isLoading = false
                 state.data = action.payload
             })

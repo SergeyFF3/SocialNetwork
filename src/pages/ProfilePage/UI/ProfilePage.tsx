@@ -82,7 +82,7 @@ const ProfilePage = ({className}: ProfilePageProps) => {
                     onChangeBgColor={onChangeBgColor}
                 />
                 <SendComment/>
-                {/*<CommentList comments={comments}/>*/}
+                <CommentList comments={comments}/>
             </div>
         </div>
     );

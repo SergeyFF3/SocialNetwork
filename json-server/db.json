@@ -90,15 +90,14 @@
   ],
   "profile": [
     {
-    "id": "1",
-    "firstname": "Сергей",
-    "lastname": "Чичиков",
-    "age": "18",
-    "city": "Moscow",
-    "avatar": "https://s1.1zoom.me/b5454/447/Men_Smile_Glance_Trunk_tree_Sweater_568128_2048x2732.jpg",
-
-    "hometown": "Тихвин"
-  },
+      "id": "1",
+      "firstname": "Сергей",
+      "lastname": "Чичиков",
+      "age": "18",
+      "city": "Moscow",
+      "avatar": "https://s1.1zoom.me/b5454/447/Men_Smile_Glance_Trunk_tree_Sweater_568128_2048x2732.jpg",
+      "hometown": "Тихвин"
+    },
     {
       "id": "2",
       "firstname": "Viktor",
@@ -106,7 +105,6 @@
       "age": "38",
       "city": "Saint-Petersburg",
       "avatar": "https://fb.ru/media/i/1/8/3/6/5/5/i/183655.jpg"
-
     },
     {
       "id": "3",
@@ -115,7 +113,6 @@
       "age": "48",
       "city": "Tikhvin",
       "avatar": "https://proprikol.ru/wp-content/uploads/2020/10/kartinki-krasivyh-muzhchin-18.jpg"
-
     },
     {
       "id": "4",
@@ -124,7 +121,6 @@
       "age": "28",
       "city": "Moscow",
       "avatar": "https://microsac.es/wp-content/uploads/2019/06/8V1z7D_t20_YX6vKm.jpg"
-
     },
     {
       "id": "5",
@@ -133,7 +129,6 @@
       "age": "18",
       "city": "Vologda",
       "avatar": "https://fb.ru/media/i/2/5/7/4/9/8/8/i/2574988.jpg"
-
     },
     {
       "id": "6",
@@ -142,7 +137,6 @@
       "age": "23",
       "city": "Piter",
       "avatar": "https://s1.1zoom.me/b5454/447/Men_Smile_Glance_Trunk_tree_Sweater_568128_2048x2732.jpg"
-
     },
     {
       "id": "7",
@@ -151,7 +145,6 @@
       "age": "29",
       "city": "Saint-Petersburg",
       "avatar": "https://www.celebs101.com/gallery/Charlize_Theron/151298/Charlize_TheronS110.jpg"
-
     },
     {
       "id": "8",
@@ -160,7 +153,6 @@
       "age": "58",
       "city": "Saint-Petersburg",
       "avatar": "https://stoletnik.ru/pictures/w18ta95gddde88dgueuf31k5160dt7ka.jpg"
-
     },
     {
       "id": "9",
@@ -169,7 +161,6 @@
       "age": "35",
       "city": "Tosno",
       "avatar": "https://sun9-78.userapi.com/impg/0lIrHjHtWFA_NSw-FLoRD_3oWcVDy7p-kNaY9w/_oxc56v7CqU.jpg?size=1280x853&quality=96&sign=2dd8b41a9272db37f001acf3b5143c79&c_uniq_tag=mwQatGMQ4sEX4wHtqC_9R7IwXcKKeNb11tAblN1XsDg&type=album"
-
     },
     {
       "id": "10",
@@ -178,7 +169,6 @@
       "age": "36",
       "city": "Volgograd",
       "avatar": "https://hrlider.ru/posts/wp-content/uploads/2022/04/zhenshhina-v-biznese-ustrojstvo-na-rabotu.jpg"
-
     },
     {
       "id": "11",
@@ -187,7 +177,6 @@
       "age": "16",
       "city": "Saint-Petersburg",
       "avatar": "https://www.mgpu.ru/wp-content/uploads/2020/09/paren-student.jpg"
-
     },
     {
       "id": "12",
@@ -196,7 +185,6 @@
       "age": "44",
       "city": "Voronezh",
       "avatar": "https://makeup.ru/storage/articles/114691/YJsCSmeOlawl84k6tqu7ZvFp9L2ozh3XJoDglpXd.jpg"
-
     },
     {
       "id": "13",
@@ -205,7 +193,6 @@
       "age": "26",
       "city": "Tosno",
       "avatar": "https://femmie.ru/wp-content/uploads/2022/01/pexels-andrea-piacquadio-733872.jpg"
-
     },
     {
       "id": "14",
@@ -214,7 +201,6 @@
       "age": "39",
       "city": "Krym",
       "avatar": "https://ehonami.blob.core.windows.net/media/2015/09/next-best-thing-anti-aging-pill.jpg"
-
     },
     {
       "id": "15",
@@ -223,10 +209,40 @@
       "age": "31",
       "city": "Saint-Petersburg",
       "avatar": "https://ayurvedamarket.ru/upload/blog_record/source/60755.jpg"
-
     }
   ],
   "comments": [
+    {
+      "2": "",
+      "id": 1
+    },
+    {
+      "2": "",
+      "id": 2
+    },
+    {
+      "2": "",
+      "id": 3
+    },
+    {
+      "3": "",
+      "id": 4
+    },
+    {
+      "3": "",
+      "id": 5
+    },
+    {
+      "3": "",
+      "id": 6
+    },
+    {
+      "3": "",
+      "id": 7
+    },
+    {
+      "3": "",
+      "id": 8
+    }
   ]
-
 }
