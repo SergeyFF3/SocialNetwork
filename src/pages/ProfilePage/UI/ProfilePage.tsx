@@ -15,9 +15,9 @@ interface ProfilePageProps {
     className?: string
 }
 
-const ProfilePage = ({className}: ProfilePageProps) => {
+const ProfilePage: React.FC = ({className}: ProfilePageProps) => {
 
-    const {id} = useParams<{ id: string }>()
+    let {id} = useParams<{ id: string }>()
     console.log(id)
     const navigate = useNavigate()
 
